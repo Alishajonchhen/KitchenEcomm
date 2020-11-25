@@ -1,4 +1,4 @@
-@extends('layout.welcome')
+@extends('layouts.app')
 @section('body')
     <div class="jumbotron">
         <div class="container">

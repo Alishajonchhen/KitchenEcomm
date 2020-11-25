@@ -1,4 +1,4 @@
-@extends('layout.welcome')
+@extends('layouts.app')
 @section('content')
     <div class="container">
         <img class="img-responsive" src="{{asset('http://localhost/KitchenWeb/public/lib/Images/aboutimg.jpg')}}" alt="Banner">

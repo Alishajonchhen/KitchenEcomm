@@ -26,7 +26,7 @@ html, body{
 
 /*Jumbotron*/
 .jumbotron {
-    background-image: url("../Images/frontpi.jpg");
+    background-image: url("../Images/front.jpg");
     width: 1240px;
     margin-left: 140px;
     height: 550px;

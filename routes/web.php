@@ -14,36 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware'=>'web'], function(){
-    /*Route for Signup*/
-    Route::get('/signup',[
-        'uses'=>'UserController@getSignUp',
-        'as'=>'users.signup']);
-
-    Route::post('/signup',[
-        'uses'=>'UserController@postSignUp',
-        'as'=>'users.signup']);
-
-    /*Route for Login*/
-    Route::get('/login',[
-        'uses'=>'UserController@getLogIn',
-        'as'=>'users.login']);
-
-    Route::post('/login',[
-        'uses'=>'UserController@postLogIn',
-        'as'=>'users.login']);
-
-    /*Route for Logout*/
-    Route::post('/logout',[
-        'uses'=>'UserController@logout',
-        'as'=>'users.logout']);
-
-    /*Route for User profile*/
-    Route::get('/profile',[
-       'uses'=>'UserController@userProfile',
-       'as'=>'users.profile'
-    ]);
-});
+/*Route for Home page*/
+Route::get('/home',[
+   'uses'=>'HomeController@home',
+    'as'=>'front.home'
+]);
 
 /*Route for About page*/
 Route::get('/about',[
@@ -65,12 +40,6 @@ Route::get('/terms',[
     'uses'=>'GuideController@ShowTerm',
     'as'=>'guide.terms']);
 
-//Auth::routes();
-/*Route for home page*/
-Route::get('/welcome',[
-    'uses'=>'HomeController@index',
-    'as'=>'layout.welcome']);
+Auth::routes();
 
-
-
-
+Route::get('/welcome', 'HomeController@home');
