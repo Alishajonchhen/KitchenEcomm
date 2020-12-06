@@ -40,6 +40,13 @@ Route::get('/terms',[
     'uses'=>'GuideController@ShowTerm',
     'as'=>'guide.terms']);
 
+/*Category Route*/
+/*Oven*/
+Route::get('/oven',[
+    'uses'=>'CategoryController@Oven',
+    'as'=>'category.oven'
+]);
+
 Auth::routes();
 
 Route::get('/welcome', 'HomeController@home');

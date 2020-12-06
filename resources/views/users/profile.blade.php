@@ -1,8 +1,5 @@
-@extends('layout.welcome')
+@extends('layouts.app')
 @section('content')
-    <div class="row">
-        <div class="col-xs-4 col-md-offset-4">
-            <h1>User Profile</h1>
-        </div>
-    </div>
+    <h3 class="aligncenter" style="font-family: 'Helvetica Neue',Helvetica,Arial,'Lucida Grande',sans-serif; box-sizing: border-box; font-size: 20px; color: #000; line-height: 1.2em; font-weight: 400; text-align: center; margin: 40px 0 0;" align="center">
+        {{ $details['title'] }}</h3>
 @endsection

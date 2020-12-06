@@ -1,5 +1,6 @@
-@extends('layout.welcome')
+@extends('layouts.welcome')
 @section('content')
+
 <div class="customer">
     <h1 style="font-family:'Special Elite', cursive; text-align: center;">Privacy Policy</h1>
     <div class="policy">

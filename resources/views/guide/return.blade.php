@@ -1,4 +1,4 @@
-@extends('layout.welcome')
+@extends('layouts.welcome')
 @section('content')
     <div class="return">
         <h1 style="font-family:'Special Elite', cursive; text-align: center;">Return Policy</h1>

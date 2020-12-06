@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.welcome')
 @section('content')
     <div class="container">
-        <img class="img-responsive" src="{{asset('http://localhost/KitchenWeb/public/lib/Images/aboutimg.jpg')}}" alt="Banner">
+        <img class="img-responsive" src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/aboutimg.jpg')}}" alt="Banner">
     </div>
 <br>
-    <div class="box">
+    <div id="box">
         <h1 class="background"><b>Our Background</b></h1>
         <p class="para">
             <span style="font-size: 40px;color: #ff834e">Welcome!</span> to Purna Trading, your number one source for all things required in kitchen.
@@ -24,27 +24,27 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/cost.png')}}" alt="efficiency" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/cost.png')}}" alt="efficiency" class="img-responsive">
                         <p class="text-center">Cost Efficient</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/less.png')}}" alt="electricity" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/less.png')}}" alt="electricity" class="img-responsive">
                     <p class="text-center">Consumes Less Electricity</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/Quality.png')}}" alt="quality" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/Quality.png')}}" alt="quality" class="img-responsive">
                     <p class="text-center">Best Quality</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/longlasting.png')}}" alt="lasting" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/longlasting.png')}}" alt="lasting" class="img-responsive">
                     <p class="text-center">Products Lasts Long</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/secure.jpg')}}" alt="secure" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/secure.jpg')}}" alt="secure" class="img-responsive">
                     <p class="text-center">Secured Data</p>
                 </div>
                 <div class="col-md-4">
-                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/exchange.jpg')}}" alt="exchange" class="img-responsive">
+                    <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/About/exchange.jpg')}}" alt="exchange" class="img-responsive">
                     <p class="text-center">Exchange Policy</p>
                 </div>
             </div>

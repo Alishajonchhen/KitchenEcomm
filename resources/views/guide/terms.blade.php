@@ -1,5 +1,6 @@
-@extends('layout.welcome')
+@extends('layouts.welcome')
 @section('content')
+
     <div class="term">
         <h1 style="font-family:'Special Elite', cursive; text-align: center;">Terms and Condition</h1>
         <div class="policy">
