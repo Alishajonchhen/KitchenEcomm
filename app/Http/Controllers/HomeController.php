@@ -30,4 +30,5 @@ class HomeController extends Controller
     {
         return view('front.home');
     }
+
 }

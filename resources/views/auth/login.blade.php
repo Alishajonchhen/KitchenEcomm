@@ -5,30 +5,32 @@
     <div class="row">
         <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;" >
             <div class="box">
-                <h1>Login</h1>
+                <div id="image-holder"></div>
+                <div class="right">
+                    <h1>Login</h1>
                     <hr>
-                    <form method="POST" action="{{ route('login') }}">
+                    <form method="POST" action="{{ route('login') }}" target="_blank">
                         @csrf
 
                         <div class="form-group">
                             <label for="email">EMAIL ADDRESS</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email Address" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="password">PASSWORD</label>
                             <input id="password" type="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
+                            @error('password')
+                            <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror
+                            @enderror
                         </div>
 
                         <div class="form-group row">
@@ -59,6 +61,7 @@
 
                         <p class="signup">Don't have an Account?<a href="{{route('register')}}"> Register</a> </p>
                     </form>
+                </div>
             </div>
         </div>
     </div>

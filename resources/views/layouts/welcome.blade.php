@@ -40,7 +40,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{route('category.oven')}}">Oven</a></li>
+                        <li><a href="#">Oven</a></li>
                         <li><a href="#">Kettle</a></li>
                         <li><a href="#">Vacuum Cleaner </a></li>
                         <li><a href="#">Toaster</a></li>
@@ -54,39 +54,20 @@
 
         <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon-user"></i>  User <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li>
-                                <a class="nav-link" href="{{ route('login') }}">Login</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li>
-                                    <a class="nav-link" href="{{ route('register') }}">Register</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
                 </li>
                 <li><a href="#"><i class="icon-shopping-cart"></i> Shopping Cart</a></li>
             </ul>

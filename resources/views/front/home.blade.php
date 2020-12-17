@@ -1,5 +1,12 @@
 @extends('layouts.welcome')
 @section('body')
+
+    <style>
+        img:hover{
+            box-shadow: 0 0 2px 1px rgba(210, 136, 0, 0.5);
+        }
+    </style>
+
     <div class="jumbotron">
         <div class="container">
             <div class="row">
@@ -31,9 +38,8 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <a href="{{route('category.oven')}}">
                         <img src="{{asset('http://localhost/KitchenWeb/public/lib/Images/Thumbnail/thumbnail_Oven.jpg')}}" alt="Oven">
-                    </a>
+
                         <br>
                 </div>
                 <p class="center">Oven</p>
