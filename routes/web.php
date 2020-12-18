@@ -40,6 +40,10 @@ Route::get('/terms',[
     'uses'=>'GuideController@ShowTerm',
     'as'=>'guide.terms']);
 
+Route::get('/admin',[
+    'uses' =>'HomeController@adminHome',
+    'as'=>'admin.adminHome'
+]);
 
 Auth::routes();
 
