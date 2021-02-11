@@ -1,0 +1,48 @@
+html, body{
+    overflow-x: hidden;
+}
+
+#search{
+    height: 40px;
+    width: 50px;
+    margin-top: -144px;
+    margin-left: 310px;
+    background-color: black;
+}
+
+.sidebar a{
+    color: white;
+}
+
+.sidebar a:hover{
+    color: black;
+}
+.sidebar a:active{
+    color: black;
+}
+
+.sidebar .closebtn {
+    position: absolute;
+    top: 5px;
+    margin-top: 15px;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.views a{
+    color: black;
+}
+
+.col-md-5 .btn{
+    margin-top: 49px;
+    background-color: black;
+    color: white;
+}
+
+.col-md-5 .page-header{
+    margin-left: 70px;
+    margin-top: -39px;
+}
+
+

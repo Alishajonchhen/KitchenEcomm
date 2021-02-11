@@ -12,4 +12,6 @@ class User extends Authenticatable
 
     protected $table='UserTable';
     protected $fillable=['name','email','password'];
+
+    protected $hidden=['password','remember_token'];
 }

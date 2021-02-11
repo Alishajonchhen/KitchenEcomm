@@ -36,7 +36,7 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{route('front.home')}}">Home <span class="sr-only">(current)</span></a></li>
+                <li><a href="{{route('front.home')}}">Home <span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Category <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -56,7 +56,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}"
@@ -64,7 +64,7 @@
                             Logout
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>
                     </div>
@@ -73,10 +73,6 @@
             </ul>
         </div>
     </nav>
-
-    <!-- <main class="py-4">
-     </main>
-     -->
 <br>
 <br>
 <br>

@@ -9,7 +9,7 @@
                 <div class="right">
                     <h1>Login</h1>
                     <hr>
-                    <form method="POST" action="{{ route('login') }}" target="_blank">
+                    <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="form-group">
