@@ -1,23 +1,29 @@
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="categoryModal" aria-hidden="true"
-     style="margin-left: 350px; width: 800px; height: 450px;">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content" style="height: 380px;">
-            <div class="modal-header">
-                <h1 class="modal-title" id="editModal">Edit Category</h1>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form style="width: 570px;height: 170px;padding: 35px;" action="/categories" method="POST" id="editForm">
+@extends('admin.adminWelcome')
+@section('body')
+    <style>
+         #box1{
+             width: 500px;
+             height: 360px;
+             padding: 20px;
+             border: 2px solid black;
+             margin-left: 60px;
+             margin-top: -630px;
+             background-color: white;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-offset-4" >
+                <div id="box1">
+                    <h1>Edit Data</h1>
+                    <hr>
+                    <form style="width: 570px;height: 170px;padding: 35px;" action="{{route('editAction')}}" method="POST">
                     @csrf
-                    {{method_field('PUT')}}
                     <div class="form-group row">
                         <label for="id" class="col-md-4 col-form-label text-md-right">Category ID</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input id="id" name="id" type="text" class="form-control" placeholder="Category ID">
-
+                            <input id="id" name="id" type="text" class="form-control" placeholder="Category ID" value="{{$editData->id}}">
                         </div>
                     </div>
 
@@ -25,8 +31,7 @@
                         <label for="name" class="col-md-4 col-form-label text-md-right">Category Name</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input id="name" name="name" type="text" class="form-control" placeholder="Category Name">
-
+                            <input id="name" name="name" type="text" class="form-control" placeholder="Category Name" value="{{$editData->name}}">
                         </div>
                     </div>
 
@@ -34,7 +39,7 @@
                         <label for="status" class="col-md-4 col-form-label text-md-right">Status</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input id="status" name="status" type="text" class="form-control" placeholder="Status">
+                            <input id="status" name="status" type="text" class="form-control" placeholder="Status" value="{{$editData->status}}">
                         </div>
                     </div>
                     <div class="form-group row mb-0">
@@ -44,8 +49,9 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endsection

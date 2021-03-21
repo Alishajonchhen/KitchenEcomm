@@ -12,7 +12,7 @@
         }
 
     </style>
-    <div class="card-body" style="width: 600px; margin-left:500px; ">
+    <div class="card-body" style="width: 900px; margin-left:500px; ">
         @if(session('success'))
             <div class="alert alert-success" role="alert">
                 <p>{{session('success')}}</p>
@@ -49,10 +49,10 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-info btn-sm">Edit </a>
+                                    <a href="{{route('edit').'/'.$category->id}}" class="btn btn-info btn-sm">Edit </a>
                                 </td>
                                 <td>
-                                    <a class="btn btn-danger btn-sm">Delete</a>
+                                    <a onclick="alert('Are you sure you want to delete it?')" href="{{route('delete').'/'.$category->id}}" class="btn btn-danger btn-sm">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

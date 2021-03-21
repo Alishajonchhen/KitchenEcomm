@@ -39,6 +39,7 @@ Route::group(['prefix'=>'user','middleware'=>'prevent-back-history'], function (
     Route::get('/terms',[
         'uses'=>'GuideController@ShowTerm',
         'as'=>'guide.terms']);
+
 });
 
 
@@ -81,8 +82,17 @@ Route::group(['prefix' => 'admin'], function () {
         'as'=>'admin.products.product'
     ]);
 
+    //Crud for category table
     Route::post('/addCategory','CategoryController@addCategory')->name('admin.addCategory');
+    Route::any('delete/{id?}','CategoryController@delete')->name('delete');
+    Route::any('edit/{id?}','CategoryController@edit')->name('edit');
+    Route::any('editAction','CategoryController@editAction')->name('editAction');
 
+    //Crud for product table
+    Route::post('/addProduct',[App\Http\Controllers\ProductController::class, 'addProduct'])->name('admin.addProducts');
+    Route::any('delete/{id?}','ProductController@delete')->name('delete');
+    Route::any('edit/{id?}','ProductController@edit')->name('edit');
+    Route::any('editAction','ProductController@editAction')->name('editAction');
 });
 
 

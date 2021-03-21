@@ -1,4 +1,3 @@
-
 <div class="row">
         <div class="col-md-3">
             <div class="panel" style="background-color: #d89995">
@@ -86,7 +85,7 @@
     <div class="row">
         @yield('content')
     </div>
-
+    @yield('body')
 </div>
 
 

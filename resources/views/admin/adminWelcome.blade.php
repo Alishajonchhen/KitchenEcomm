@@ -22,6 +22,9 @@
           href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
     <style>
+        #main{
+            background-color: rgba(228,224,255,0.78);
+        }
         .form-control{
             margin-left: 297px;
             top: -60px;
@@ -234,13 +237,17 @@
 
 <script>
     //appearance of scroll in the table
-    $(document).ready(function() {
+    $(function() {
         $('#dataTable').DataTable({
             "sScrollY":"250px",
             "bScrollCollapse":true,
         });
+        $('#productTable').DataTable({
+            "sScrollY":"250px",
+            "bScrollCollapse":true,
+        });
     });
-
 </script>
+
 </body>
 </html>

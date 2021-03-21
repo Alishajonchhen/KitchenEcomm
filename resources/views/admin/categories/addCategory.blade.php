@@ -15,7 +15,7 @@ style="margin-left: 350px; width: 800px; height: 450px;">
                         <label for="id" class="col-md-4 col-form-label text-md-right">Category ID</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input name="id" type="text" class="form-control" placeholder="Category ID">
+                            <input name="id" type="text" class="form-control" placeholder="Category ID" required style="height: 25px;">
                         </div>
                     </div>
 
@@ -23,7 +23,7 @@ style="margin-left: 350px; width: 800px; height: 450px;">
                         <label for="name" class="col-md-4 col-form-label text-md-right">Category Name</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input name="name" type="text" class="form-control" placeholder="Category Name">
+                            <input name="name" type="text" class="form-control" placeholder="Category Name" required style="height: 25px;">
 
                         </div>
                     </div>
@@ -32,13 +32,13 @@ style="margin-left: 350px; width: 800px; height: 450px;">
                         <label for="status" class="col-md-4 col-form-label text-md-right">Status</label>
 
                         <div class="col-sm-6" style="margin-left: -300px;">
-                            <input name="status" type="text" class="form-control" placeholder="Status">
+                            <input name="status" type="text" class="form-control" placeholder="Status" required style="height: 25px;">
                         </div>
                     </div>
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-success" style=" margin-left: 100px; width: 170px;">
-                                Submit
+                            <button type="submit" class="btn btn-success" style=" margin-left: 0; width: 170px;">
+                                Add Category
                             </button>
                         </div>
                     </div>
