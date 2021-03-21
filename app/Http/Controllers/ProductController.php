@@ -2,36 +2,41 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Support\Str;
 use App\Product;
+use App\Traits\UploadImage;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use UploadImage;
     public function listProduct()
     {
-        $products = Product::get();
-        return view('admin.products.product')->with(compact('products'));
+        $products = Product::with('category')->get();
+        $categories = Category::where('status', 1)->get();
+        return view('admin.products.product')->with(compact('products', 'categories'));
     }
 
     public function addProduct(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required',
+            'product_code' => 'nullable|unique:products',
             'product_name' => 'required',
             'product_price' => 'required',
-            'product_discount' => 'required',
+            'product_discount' => 'sometimes|nullable|numeric',
             'product_description' => 'required|min:5',
-            'product_voltage' => 'required',
             'product_color' => 'required',
             'product_image' => 'required|mimes:jpeg,jpg,png,gif',
             'category_id' => 'required',
             'status' => 'required',
         ]);
 
+        $storelocation = "lib/Images/products/";
+
         $new = new Product();
 
-        $new->id = $request->input('id');
+        $new->product_code = $request->input('product_code');
         $new->product_name = $request->input('product_name');
         $new->product_price = $request->input('product_price');
         $new->product_discount = $request->input('product_discount');
@@ -40,86 +45,92 @@ class ProductController extends Controller
         $new->product_color = $request->input('product_color');
         $new->category_id = $request->input('category_id');
         $new->status = $request->input('status');
-        $new->product_image = $request->input('product_image');
-        dd($request);
-        $new->save();
         if ($request->hasFile('product_image')) {
-            $image = $request->file('product_image');
-            $ext = $image->getClientOriginalExtension();
-            $imageName = Str::random() . '.' . $ext;
-            $uploadPath = public_path('lib/Images/products/');
-            $image->move($uploadPath, $imageName);
 
-            $new['product_image'] = $imageName;
-            $new->id = $request->input('id');
-            $new->product_name = $request->input('product_name');
-            $new->product_price = $request->input('product_price');
-            $new->product_discount = $request->input('product_discount');
-            $new->product_description = $request->input('product_description');
-            $new->product_voltage = $request->input('product_voltage');
-            $new->product_color = $request->input('product_color');
-            $new->category_id = $request->input('category_id');
-            $new->status = $request->input('status');
-            $new->save();
-            return redirect('/admin/products')->with('success', 'Data is added successfully.');
+            $fileNameToStore = $this->uploadimagePublic($request->product_image, $storelocation);
+            $new->product_image = $fileNameToStore;
         }
+        $new->save();
+
+
+        return redirect()->route('admin.products.product')->with('success', 'Product is added successfully.');
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
-        $id = $request->id;
-        if (Product::findOrFail($id)->delete()) {
-            return redirect()->route('admin.products.product')->with('success', 'Data is deleted successfully.');
+        $product = Product::findOrFail($id);
+        if ($product->product_image) {
+            $image_path = public_path() . '/lib/Images/products/' . $product->product_image;
+            if (file_exists($image_path)) {
+                unlink($image_path);
+            }
         }
+        $product->delete();
+        return redirect()->route('admin.products.product')->with('success', 'Product is deleted successfully.');
     }
 
     public function edit(Request $request)
     {
         $id = $request->id;
-        $editData = Product::findOrFail($id);
-        return view('admin.products.editProduct')->with(compact('editData'));
+        $editData = Product::with('category')->findOrFail($id);
+        $categories = Category::all();
+        return view('admin.products.editProduct')->with(compact('editData', 'categories'));
     }
 
-    public function editAction(Request $request)
+    /**
+     * Update the product
+     * 
+     * @param Request $request
+     * @param int $id
+     * 
+     * @return response
+     */
+    public function update(Request $request, $id)
     {
-        if ($request->isMethod('get')) {
-            return redirect()->back();
-        }
-        if ($request->isMethod('post')) {
-            try {
-                $this->validate($request, [
-                        'id' => 'required',
-                        'product_name' => 'required',
-                        'product_price' => 'required',
-                        'product_discount' => 'required',
-                        'product_description' => 'required|min:5',
-                        'product_voltage' => 'required',
-                        'product_color' => 'required',
-                        'product_image' => 'required|mimes:jpeg,jpg,png,gif',
-                        'category_id' => 'required',
-                        'status' => 'required',
-                    ]
-                );
-                dd($request);
-            } catch (\Throwable $e) {
-                dd($e);
-            }
-            $id = $request->id;
-            dd($id);
-            $new['id'] = $request->id;
+        $this->validate(
+            $request,
+            [
+                'product_name' => 'required',
+                'product_price' => 'required',
+                'product_discount' => 'sometimes|nullable|numeric',
+                'product_description' => 'required|min:5',
+                'product_color' => 'required',
+                'product_image' => 'nullable|mimes:jpeg,jpg,png,gif',
+                'category_id' => 'required',
+                'status' => 'required',
+            ]
+        );
+        $storelocation = "lib/Images/products/";
+        $new = Product::where('id', $id)->first();
+        if ($new) {
+
+            $new['product_code'] = $request->product_code;
             $new['product_name'] = $request->product_name;
             $new['product_price'] = $request->product_price;
             $new['product_discount'] = $request->product_discount;
             $new['product_description'] = $request->product_description;
             $new['product_voltage'] = $request->product_voltage;
             $new['product_color'] = $request->product_color;
-            $new['product_image'] = $request->product_image;
             $new['category_id'] = $request->category_id;
             $new['status'] = $request->status;
-
-            if (Product::where('id', $id)->update($new)) {
-                return redirect()->route('admin.products.product')->with('success', 'Data is updated successfully.');
+            if ($request->hasFile('product_image')) {
+                //first remove the image 
+                if ($new->product_image) {
+                    $image_path = public_path() . '/lib/Images/products/' . $new->product_image;
+                    if (file_exists($image_path)) {
+                        unlink($image_path);
+                    }
+                }
+                //and then save the new image
+                $fileNameToStore = $this->uploadimagePublic($request->product_image, $storelocation);
+                $new->product_image = $fileNameToStore;
             }
+
+            $new->update();
+
+            return redirect()->route('admin.products.product')->with('success', 'Product  updated successfully.');
+        } else {
+            return redirect()->route('admin.products.product')->with('error', 'Product not found');
         }
     }
 }

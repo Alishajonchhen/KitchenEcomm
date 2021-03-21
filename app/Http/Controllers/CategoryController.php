@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Product;
+
 class CategoryController extends Controller
 {
 
@@ -33,8 +35,13 @@ class CategoryController extends Controller
     public function delete(Request $request)
     {
         $id = $request->id;
-        if (Category::findOrFail($id)->delete()) {
-            return redirect()->route('admin.categories.category')->with('success', 'Data is deleted successfully.');
+        $product = Product::where('category_id', $id)->first();
+        if (!$product) {
+            if (Category::findOrFail($id)->delete()) {
+                return redirect()->route('admin.categories.category')->with('success', 'Data is deleted successfully.');
+            }
+        } else {
+            return redirect()->route('admin.categories.category')->with('error', 'Category is used by product. Please delete product first to delete this category.');
         }
     }
 
@@ -51,21 +58,22 @@ class CategoryController extends Controller
             return redirect()->back();
         }
         if ($request->isMethod('post')) {
-            $this->validate($request, [
-                'id' => 'required',
-                'name' => 'required',
-                'status' => 'required'
-            ]
+            $this->validate(
+                $request,
+                [
+                    'id' => 'required',
+                    'name' => 'required',
+                    'status' => 'required'
+                ]
             );
             $id = $request->id;
-            $new['id']=$request->id;
-            $new['name']=$request->name;
-            $new['status']=$request->status;
+            $new['id'] = $request->id;
+            $new['name'] = $request->name;
+            $new['status'] = $request->status;
 
-            if (Category::where('id',$id)->update($new)){
+            if (Category::where('id', $id)->update($new)) {
                 return redirect()->route('admin.categories.category')->with('success', 'Data is updated successfully.');
             }
         }
     }
 }
-
