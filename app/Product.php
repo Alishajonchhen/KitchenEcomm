@@ -20,6 +20,7 @@ class Product extends Model
 
     protected $appends = ['image_path'];
 
+    //Image path 
     public function getImagePathAttribute()
     {
         return "/lib/Images/products/";

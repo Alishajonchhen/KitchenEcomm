@@ -103,55 +103,26 @@
 <br>
 <br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
+    <div class="row col-md-12">
+        @foreach ($categories as $category)
+
+        <div class="col-md-3">
             <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Oven.jpg')}}" alt="Oven">
+                @if ($category->category_image)
+
+                <img src="{{asset($category->image_path.$category->category_image)}}" alt="{{ $category->slug }}">
+                @else
+                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Oven.jpg')}}" alt="{{ $category->slug }}">
+                @endif
 
                 <br>
             </div>
-            <p class="center">Oven</p>
+            <a href="{{ route('frontend-category', $category->slug) }}">
+                <p class="center">{{ $category->name }}</p>
+            </a>
         </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Kettle.jpg')}}" alt="Oven">
-                <br>
-            </div>
-            <p class="center">Kettle</p>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Vacuum.jpg')}}" alt="Oven">
-                <br>
-            </div>
-            <p class="center">Vacuum Cleaner</p>
-        </div>
-    </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Fan.jpg')}}" alt="Oven">
-                <br>
-            </div>
-            <p class="center">Fan</p>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Toaster.jpg')}}" alt="Oven">
-                <br>
-            </div>
-            <p class="center">Toaster</p>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="{{asset('lib/Images/Thumbnail/thumbnail_Utensils.jpg') }}" alt="Oven">
-                <br>
-            </div>
-            <p class="center">Utensils</p>
-        </div>
+        @endforeach
     </div>
 </div>
 <br>
@@ -174,4 +145,7 @@
         </div>
     </div>
 </div>
+@endsection
+@section('scripts')
+<script src="{{ asset('lib/dist/test.js') }}" defer></script>
 @endsection

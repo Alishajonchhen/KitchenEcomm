@@ -44,12 +44,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                         aria-expanded="false">Category <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Oven</a></li>
-                        <li><a href="#">Kettle</a></li>
-                        <li><a href="#">Vacuum Cleaner </a></li>
-                        <li><a href="#">Toaster</a></li>
-                        <li><a href="#">Fan</a></li>
-                        <li><a href="#">Utensils</a></li>
+                        @foreach ($categories as $category)
+                        <li><a href="{{ route('frontend-category', $category->slug) }}">{{ $category->name }}</a></li>
+                        @endforeach
+
                     </ul>
                 </li>
                 <li><a href="{{route('guide.about')}}">About</a></li>
@@ -74,7 +72,9 @@
                         </form>
                     </div>
                 </li>
-                <li><a href="#"><i class="icon-shopping-cart"></i> Shopping Cart</a></li>
+                <li><a href="{{ route('all-carts') }}"> <span style="color:red" id="cart-item-count">{{ $cartCount }}
+                        </span> &nbsp;<i class="icon-shopping-cart"></i>
+                        Shopping Cart</a></li>
             </ul>
         </div>
     </nav>
@@ -116,9 +116,9 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    <script src="{{ asset('lib/dist/test.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
+@yield('scripts')
 
 </html>

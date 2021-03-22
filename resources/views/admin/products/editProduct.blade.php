@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-xs-6 col-md-offset-4">
             <div id="box1">
-                <h1>Edit Data</h1>
+                <h1>Edit Product</h1>
                 <hr>
                 @if ($errors)
                 @foreach($errors->all() as $error)

@@ -1,5 +1,7 @@
 <?php
 
+use App\Cart;
+use App\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+View::composer('*', function ($view) {
+    $categories = Category::where('status', 1)->get();
+    $cartCount = Cart::where('is_checked_out', 0)->where('user_id', Auth::id())->sum('quantity');
+    return $view->with(['categories' => $categories, 'cartCount' => $cartCount]);
+});
 
 Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], function () {
     /*Route for Home page*/
@@ -45,6 +53,11 @@ Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], funct
         'as' => 'guide.terms'
     ]);
 });
+
+//############################################# FRONTEND CATEGORY WISE PRODUCT LISTING #############################3
+Route::get('/category/{slug}', 'Frontend\CategoryController@index')->name('frontend-category');
+Route::get('/add-to-cart/{id}', 'Frontend\CartController@addToCart')->name('add-to-cart');
+Route::get('/add-to-cart', 'Frontend\CartController@index')->name('all-carts');
 
 
 Auth::routes();
@@ -88,9 +101,9 @@ Route::group(['prefix' => 'admin'], function () {
 
     //Crud for category table
     Route::post('/addCategory', 'CategoryController@addCategory')->name('admin.addCategory');
-    Route::any('/category/delete/{id?}', 'CategoryController@delete')->name('delete');
-    Route::any('/category/edit/{id?}', 'CategoryController@edit')->name('edit');
-    Route::any('/category/editAction', 'CategoryController@editAction')->name('editAction');
+    Route::delete('/category/delete/{id?}', 'CategoryController@delete')->name('delete-category');
+    Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category');
+    Route::patch('/category/update/{id}', 'CategoryController@update')->name('update-category');
 
     //Crud for product table
     Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('admin.addProducts');
