@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -27,6 +28,7 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('front.home');
+        $categories = Category::where('status', 1)->get();
+        return view('front.home', compact('categories'));
     }
 }

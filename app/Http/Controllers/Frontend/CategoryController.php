@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Controllers\Frontend;
+
+use App\Category;
+use App\Http\Controllers\Controller;
+use App\Product;
+use Illuminate\Http\Request;
+
+class CategoryController extends Controller
+{
+    /**
+     * List all the products associated with a specific category
+     * 
+     * @param String $slug
+     */
+    public function index($slug)
+    {
+        $category = Category::where('slug', $slug)->first();
+        $products = Product::with('category')->where('category_id', $category->id)->get();
+        // return $category;
+        // return $products;
+        return view("front.product", compact('category', 'products'));
+    }
+}
