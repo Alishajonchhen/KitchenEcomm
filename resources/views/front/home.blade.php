@@ -104,7 +104,7 @@
 <br>
 <div class="container">
     <div class="row col-md-12">
-        @foreach ($categories as $category)
+        @forelse ($categories as $category)
 
         <div class="col-md-3">
             <div class="thumbnail">
@@ -118,11 +118,12 @@
                 <br>
             </div>
             <a href="{{ route('frontend-category', $category->slug) }}">
-                <p class="center">{{ $category->name }}</p>
+                <p class="center">{{ $category->name }} ({{ $category->products()->count() }})</p>
             </a>
         </div>
-
-        @endforeach
+        @empty
+        No Categories.
+        @endforelse
     </div>
 </div>
 <br>

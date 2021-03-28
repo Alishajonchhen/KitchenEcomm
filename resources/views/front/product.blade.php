@@ -282,11 +282,10 @@
             //Making an ajax request to add item to cart :) 
             $.get(url,function(data,status){
                 console.log(data);
-            }).done(function(){
+            }).done(function(data){
+             $("#cart-item-count").html(parseInt(data.data));
                 alert('Product added to cart successfully.');
                 //updatin the cart count;
-                let currentCount = $("#cart-item-count").html();
-                $("#cart-item-count").html(parseInt(currentCount)+1);
             }).fail(function(){
                 alert('Error occurred duing adding item to cart.');
             })

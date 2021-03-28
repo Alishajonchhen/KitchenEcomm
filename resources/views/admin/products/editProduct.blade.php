@@ -1,13 +1,24 @@
 @extends('admin.adminWelcome')
-@section('body')
+@section('page-header')
+<div class="col-md-5">
+    <h1 class="page-header">Edit Product</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
+            </ol>
+        </div>
+    </div>
+</div>
+@endsection
+@section('content')
 <style>
     #box1 {
         width: 1050px;
         height: 500px;
         padding: 20px;
         border: 2px solid black;
-        margin-left: -210px;
-        margin-top: -630px;
+        margin-left: -350px;
         background-color: white;
     }
 </style>
@@ -15,8 +26,6 @@
     <div class="row">
         <div class="col-xs-6 col-md-offset-4">
             <div id="box1">
-                <h1>Edit Product</h1>
-                <hr>
                 @if ($errors)
                 @foreach($errors->all() as $error)
                 <span style="color:red">

@@ -4,12 +4,14 @@
     }
 </style>
 
+{{-- <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModal" aria-hidden="true"
+    style="margin-left: 170px; width: 1200px; height: 590px;"> --}}
 <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModal" aria-hidden="true"
-    style="margin-left: 170px; width: 1200px; height: 590px;">
+    style="margin-left:20px;background-color:unset !important;;width:unset !important;">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="width: 1100px; margin-left: -240px">
             <div class="modal-header">
-                <h1 class="modal-title" id="productModal">Add Product</h1>
+                <h3 class="modal-title">Add Product</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -93,8 +95,7 @@
                                 Image *</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
-                                <input name="product_image" type="file" class="btn btn-primary"
-                                    placeholder="Product Image" required
+                                <input name="product_image" type="file" placeholder="Product Image" required
                                     style="margin-left: 300px; height: 30px; width: 270px;">
                             </div>
                         </div>

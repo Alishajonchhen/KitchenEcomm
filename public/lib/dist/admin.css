@@ -1,8 +1,9 @@
-html, body{
+html,
+body {
     overflow-x: hidden;
 }
 
-#search{
+#search {
     height: 40px;
     width: 50px;
     margin-top: -144px;
@@ -10,14 +11,14 @@ html, body{
     background-color: black;
 }
 
-.sidebar a{
+.sidebar a {
     color: white;
 }
 
-.sidebar a:hover{
+.sidebar a:hover {
     color: black;
 }
-.sidebar a:active{
+.sidebar a:active {
     color: black;
 }
 
@@ -30,19 +31,17 @@ html, body{
     margin-left: 50px;
 }
 
-.views a{
+.views a {
     color: black;
 }
 
-.col-md-5 .btn{
+.col-md-5 .btn {
     margin-top: 49px;
     background-color: black;
     color: white;
 }
 
-.col-md-5 .page-header{
+.col-md-5 .page-header {
     margin-left: 70px;
-    margin-top: -39px;
+    /* margin-top: -39px; */
 }
-
-

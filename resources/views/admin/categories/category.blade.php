@@ -1,4 +1,16 @@
 @extends('admin.adminWelcome')
+@section('page-header')
+<div class="col-md-5">
+    <h1 class="page-header">Category</h1>
+    <div class="row">
+        <div class="col-sm-6">
+            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
+                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
+            </ol>
+        </div>
+    </div>
+</div>
+@endsection
 @section('content')
 <style>
     #box {

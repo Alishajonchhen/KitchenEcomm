@@ -61,7 +61,8 @@
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
+                        style="margin-right: -95px;">
                         <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                             Logout
@@ -70,12 +71,24 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
                         </form>
+
+                        <a class="dropdown-item" href="{{ route('order-track') }}">
+                            Order Track
+                        </a>
+                        <div>
+
+                            <a class="dropdown-item" href="{{ route('user-profile') }}">
+                                Profile
+                            </a>
+                        </div>
                     </div>
+
                 </li>
                 <li><a href="{{ route('all-carts') }}"> <span style="color:red" id="cart-item-count">{{ $cartCount }}
                         </span> &nbsp;<i class="icon-shopping-cart"></i>
                         Shopping Cart</a></li>
             </ul>
+
         </div>
     </nav>
     <br>
@@ -120,5 +133,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 @yield('scripts')
+
+<style>
+    #logout-form {
+        margin: 0px !important;
+    }
+</style>
 
 </html>

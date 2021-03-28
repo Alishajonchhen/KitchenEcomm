@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Order;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -28,7 +29,7 @@ class AdminController extends Controller
 
     public function welcome()
     {
-        return view('admin.adminWelcome');
+        $orderCount = Order::where('status', 0)->count();
+        return view('admin.dashboard', compact('orderCount'));
     }
-
 }
