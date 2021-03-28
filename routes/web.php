@@ -3,6 +3,7 @@
 use App\Cart;
 use App\Category;
 use App\Http\Controllers\Frontend\OrderController;
+use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\UserController;
 use App\Http\Controllers\OrderController as AppOrderController;
 use Illuminate\Support\Facades\Auth;
@@ -63,6 +64,7 @@ Route::group(['middleware' => 'auth', 'prevent-back-history'], function () {
 
     Route::get('/user/profile', [UserController::class, 'index'])->name('user-profile');
     Route::patch('/user/change/password', [UserController::class, 'changePassword'])->name('change-password');
+    Route::get('/search/product', [SearchController::class, 'search'])->name('search-product');
 
     //############################################# FRONTEND CATEGORY WISE PRODUCT LISTING #############################
 
@@ -72,6 +74,7 @@ Route::group(['middleware' => 'auth', 'prevent-back-history'], function () {
     Route::get('/checkout/cart', 'Frontend\CartController@checkoutOrder')->name('checkout-order');
     Route::delete('/remove-item/{id}', 'Frontend\CartController@removeItemFromCart')->name('remove-item');
 
+    Route::get('/product/{id}', 'Frontend\CategoryController@productDetail')->name('frontend-product-detail');
     Route::post("/place-order", [OrderController::class, 'store'])->name('store-order');
 
     //####################################3 ORder tracking #########################################

@@ -28,10 +28,13 @@
                     <form class="navbar-form navbar-right">
                         <div class="form-group">
                             <label>
-                                <input type="text" class="form-control" placeholder="Search">
+                                <input type="text" name="search_value" class="form-control" placeholder="Search"
+                                    id="searched_value">
                             </label>
                         </div>
-                        <button type="submit" class="btn">Search</button>
+                        <ul class="search-list" hidden>
+                        </ul>
+                        <button id="search_product" class="btn">Search</button>
                     </form>
                 </div>
             </div>
@@ -138,6 +141,76 @@
     #logout-form {
         margin: 0px !important;
     }
+
+    .search-list {
+        margin: 0px !important;
+        padding-left: 3px;
+        position: absolute;
+        z-index: 999;
+        color: black;
+        background: white;
+        width: 170px;
+        list-style-type: none;
+        border: 1px solid black;
+    }
+
+    .search-list li {
+        text-decoration: none;
+    }
 </style>
+<script>
+    $(document).ready(function(){
+        $('#search_product').on('click', function(e){
+            e.preventDefault();
+            let searched = $('#searched_value').val();
+            console.log(searched);
+            let url = "{{ route('search-product') }}"
+            $('.search-list').empty();
+            $.get(url, {'keyword':searched}, function(data,status){
+                if(status == 'success'){
+                    $('.search-list').attr("hidden", false);
+                    $('.search-list').append(`
+                    <li style="margin-left:132px;cursor:pointer;">
+                    <div>
+                    <span class="badge badge-important" id="close_search">X</span
+                    </div>
+                    </li> `);
+                    if(data.data.length == 0){
+                        $('.search-list').append(`
+                        <li>No Records Found</li>
+                        `);
+                    }else{
+                        data.data.forEach(item => {
+                        if(item.hasOwnProperty('category_id')){
+
+                        $('.search-list').append(`
+                        <li>
+                        <a href="/product/${item.id}">${item.product_name}</a>
+                        </li>
+                        `);
+                        }else{
+                        $('.search-list').append(`
+                        <li>
+                        <a href="/category/${item.slug}">${item.name}</a>
+                        
+                        </li>
+                        `);
+                        }
+                        });
+                    }
+                 
+                }
+            }).fail(function(data){
+                console.log(data);
+            })
+        });
+        $(document).on('click','#close_search', function(e){
+            e.preventDefault();
+            $('.search-list').empty();
+            $('.search-list').attr("hidden", true);
+        })
+    })
+   
+</script>
 
 </html>
