@@ -163,7 +163,6 @@
         $('#search_product').on('click', function(e){
             e.preventDefault();
             let searched = $('#searched_value').val();
-            console.log(searched);
             let url = "{{ route('search-product') }}"
             $('.search-list').empty();
             $.get(url, {'keyword':searched}, function(data,status){

@@ -58,7 +58,7 @@ Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], funct
     ]);
 });
 
-Route::group(['middleware' => 'auth', 'prevent-back-history'], function () {
+Route::group(['middleware' => 'prevent-back-history'], function () {
 
     //##################################################3 USER ROUTEs ###########################################
 
@@ -114,42 +114,42 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
 
-    Route::group(['middleware' => 'auth'], function () {
+    // Route::group(['middleware' => 'auth'], function () {
 
-        Route::get('/welcome', 'AdminController@welcome')->name('admin.dashboard');
+    Route::get('/welcome', 'AdminController@welcome')->name('admin.dashboard');
 
-        //Category
+    //Category
 
-        Route::get('/categories', [
-            'uses' => 'CategoryController@listCategory',
-            'as' => 'admin.categories.category'
-        ]);
+    Route::get('/categories', [
+        'uses' => 'CategoryController@listCategory',
+        'as' => 'admin.categories.category'
+    ]);
 
-        //Product
-        Route::get('/products', [
-            'uses' => 'ProductController@listProduct',
-            'as' => 'admin.products.product'
-        ]);
+    //Product
+    Route::get('/products', [
+        'uses' => 'ProductController@listProduct',
+        'as' => 'admin.products.product'
+    ]);
 
-        //Crud for category table
-        Route::post('/addCategory', 'CategoryController@addCategory')->name('admin.addCategory');
-        Route::delete('/category/delete/{id?}', 'CategoryController@delete')->name('delete-category');
-        Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category');
-        Route::patch('/category/update/{id}', 'CategoryController@update')->name('update-category');
+    //Crud for category table
+    Route::post('/addCategory', 'CategoryController@addCategory')->name('admin.addCategory');
+    Route::delete('/category/delete/{id?}', 'CategoryController@delete')->name('delete-category');
+    Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category');
+    Route::patch('/category/update/{id}', 'CategoryController@update')->name('update-category');
 
-        //Crud for product table
-        Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('admin.addProducts');
-        Route::delete('/product/delete/{id}', 'ProductController@delete')->name('delete-product');
-        Route::get('/product/edit/{id}', 'ProductController@edit')->name('edit-product');
-        Route::patch('/product/update/{id}', 'ProductController@update')->name('update-product');
+    //Crud for product table
+    Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('admin.addProducts');
+    Route::delete('/product/delete/{id}', 'ProductController@delete')->name('delete-product');
+    Route::get('/product/edit/{id}', 'ProductController@edit')->name('edit-product');
+    Route::patch('/product/update/{id}', 'ProductController@update')->name('update-product');
 
-        // order Controller
-        Route::get('/orders', [AppOrderController::class, 'index'])->name('admin-order-list');
-        Route::get('/order/edit/{id}', [AppOrderController::class, 'edit'])->name('admin-edit-order');
-        Route::get('/order/view/{id}', [AppOrderController::class, 'viewOrder'])->name('admin-order-view');
-        Route::patch('/order/update/status/{id}', [AppOrderController::class, 'updateStatus'])->name('update-order-status');
-        Route::patch('/order/update/item/status/{id}', [AppOrderController::class, 'updateItemStatus'])->name('update-order-item-status');
-        Route::delete('/order/delete/{id}', [AppOrderController::class, 'delete'])->name('admin-delete-order');
-        Route::delete('/order/item/delete/{id}', [AppOrderController::class, 'deleteOrderItem'])->name('admin-delete-order-item');
-    });
+    // order Controller
+    Route::get('/orders', [AppOrderController::class, 'index'])->name('admin-order-list');
+    Route::get('/order/edit/{id}', [AppOrderController::class, 'edit'])->name('admin-edit-order');
+    Route::get('/order/view/{id}', [AppOrderController::class, 'viewOrder'])->name('admin-order-view');
+    Route::patch('/order/update/status/{id}', [AppOrderController::class, 'updateStatus'])->name('update-order-status');
+    Route::patch('/order/update/item/status/{id}', [AppOrderController::class, 'updateItemStatus'])->name('update-order-item-status');
+    Route::delete('/order/delete/{id}', [AppOrderController::class, 'delete'])->name('admin-delete-order');
+    Route::delete('/order/item/delete/{id}', [AppOrderController::class, 'deleteOrderItem'])->name('admin-delete-order-item');
 });
+// });
