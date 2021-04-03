@@ -50,21 +50,28 @@
                         </td>
                         <td> <strong> {{ $item->price  }} </strong> </td>
                         <td data-th="Quantity">
-                            <b> <input type="number" class="form-control text-center item-qty"
-                                    value="{{ $item->quantity  }}" min="1" id="item{{ $item->product->id }}"
-                                    data-price="{{ $item->product->product_price }}" data-id="{{ $item->product->id }}">
-                            </b>
+                            <input type="number" class="form-control text-center item-qty"
+                                value="{{ $item->quantity  }}" min="1" id="item{{ $item->id }}"
+                                data-price="{{ $item->product->product_price }}" data-id="{{ $item->id }}" disabled>
+                            <button class="btn btn-success edit" id="edit{{ $item->id }}" data-id="{{ $item->id }}"
+                                type="submit">Edit</button>
+                            <button class="btn btn-success save" id="save{{ $item->id }}" style="display:none"
+                                data-id="{{ $item->id }}"
+                                data-href="{{ route('add-to-cart', $item->id) }}">Save</button>
+                            <button class="btn btn-success cancel" id="cancel{{ $item->id }}" style="display: none;"
+                                data-id="{{ $item->id }}">Cancel</button>
                         </td>
                         <td>
 
-                            <strong id="total{{ $item->product->id }}" class="total">
-                                {{ $item->total * $item->quantity }}</strong>
+                            <strong id="total{{ $item->id }}" class="total">
+                                {{ $item->price * $item->quantity }}</strong>
                         </td>
                         <td class="actions" data-th="" style="width:10%;">
-                            <button class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-shopping-cart">
+                            {{-- <button class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-shopping-cart">
                                 </span>
-                            </button>
-                            <button class="btn btn-danger btn-sm"> <i class="icon-trash"> </i> </button>
+                            </button> --}}
+                            <button class="btn btn-danger btn-sm remove" id="remove{{ $item->id }}"
+                                data-href="{{ route('remove-item', $item->id) }}"> <i class="icon-trash"> </i> </button>
                         </td>
                     </tr>
                     @empty
@@ -86,8 +93,13 @@
                             <strong id="totalPrice"> Total Price :
                                 {{ $total }} </strong>
                         </td>
-                        <td> <a href="#" class="btn btn-success btn-block"> Checkout <i class="fa fa-angle-right"> </i>
+                        <td>
+                            @if (count($items) > 0)
+                            <a href="{{ route('checkout-order') }}" class="btn btn-success btn-block"> Checkout <i
+                                    class="fa fa-angle-right"> </i>
                             </a>
+                            @endif
+
                         </td>
                     </tr>
                 </tfoot>
@@ -111,9 +123,8 @@
             let id = $(this).attr('id');
             let productId = $(this).attr('data-id');
             let price = $(this).attr('data-price');
-            console.log(productId);
-            console.log(id);
             let subTotal = qty*price;
+            console.log(productId);
             //Once the qty changes re render the sub total of that item;
             $("#total"+productId).html(subTotal.toFixed(2));
 
@@ -124,8 +135,65 @@
             allTotals.forEach(total => {
                 totalPrice = parseFloat(totalPrice) + parseFloat(total);
             });
-            $("#totalPrice").html(totalPrice.toFixed(2));
+            $("#totalPrice").html('Total Price : '+totalPrice.toFixed(2));
         });
+
+        //when edit button is pressed
+        $(".edit").on('click', function(){
+            console.log('asdasd');
+            let id = $(this).attr('data-id');
+            $("#item"+id).attr('disabled', false);
+            $("#edit"+id).css('display', 'none');
+            $("#save"+id).css('display', 'inline');
+            $("#cancel"+id).css('display', 'inline');
+        });
+
+    //when cancel button is clicked
+        $(".cancel").on('click', function(){
+            let id = $(this).attr('data-id');
+            $("#item"+id).attr('disabled', true);
+            $("#edit"+id).css('display', 'inline');
+            $("#save"+id).css('display', 'none');
+            $("#cancel"+id).css('display', 'none');
+        });
+       
+       //when save button is clicked
+       $(".save").on("click", function(){
+           let url = $(this).attr('data-href');
+           let id = $(this).attr('data-id');
+           let qty = $("#item"+id).val();
+           //making an ajax request to update the product quantity
+         $.get(url,{'qty': qty},function(data,status){
+                $("#item"+id).attr('disabled', true);
+                $("#edit"+id).css('display', 'inline');
+                $("#save"+id).css('display', 'none');
+                $("#cancel"+id).css('display', 'none');
+            }).done(function(data){
+                alert('Product quantity updated  successfully.');
+            }).fail(function(){
+             alert('Error occurred duing updating the product quantity.');
+            });
+       })
+
+       //when the remove icon is clicked.. removes the item from cart ;) 
+       $(".remove").on("click", function(){
+           let id = $(this).attr('data-id');
+           let removeUrl = $(this).attr('data-href');
+           let that = this;
+            $.ajax({
+            url: removeUrl,
+            method:'DELETE',
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            success:function(data){
+                //removing the clicked product from the frontend table
+                $(that).closest('tr').remove();
+            },
+            error:function(err){
+                console.log(err);
+            }
+            });
+       });
+     
     });
     
 </script>

@@ -203,31 +203,29 @@
             <br>
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
             <br><br>
-            <li><a href="{{route('admin.dashboard')}}">Overview </a></li>
+            <li><a href="{{route('admin.dashboard')}}"
+                    class="{{ Request::is('admin/welcome') ? "active" : '' }}">Overview </a></li>
             <li><a href="#">Attendance</a></li>
-            <li><a href="{{route('admin.categories.category')}}">Category</a></li>
-            <li><a href="{{route('admin.products.product')}}">Products</a></li>
+            <li><a href="{{route('admin.categories.category')}}"
+                    class="{{ Request::is('admin/categories') || Request::is('admin/category/edit/*') ? "active" : '' }}">Category</a>
+            </li>
+            <li><a href="{{route('admin.products.product')}}"
+                    class="{{ Request::is('admin/products') || Request::is('admin/product/edit/*') ? "active" : '' }}">Products</a>
+            </li>
+            <li><a href="{{route('admin-order-list')}}"
+                    class="{{ Request::is('admin/orders') ? "active" : '' }}">Orders</a></li>
         </ul>
 
 
     </div>
     <div id="main">
         <div class="row">
-            <div class="col-md-5">
-                <button class="btn" onclick="openNav()"> ☰ </button>
-                <h1 class="page-header">Dashboard</h1>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
-                            <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
-                        </ol>
-                    </div>
-                </div>
-            </div>
+            @yield('page-header')
             <br>
             <br><br><br><br><br><br>
             <!-- /.col-lg-12 -->
-            @include('admin.adminPanel');
+            @yield('content')
+
         </div>
 
     </div>
@@ -236,12 +234,11 @@
 
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('lib/dist/adminJs.js') }}" defer></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
     <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+
     <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
@@ -261,5 +258,12 @@
 
     @yield('scripts')
 </body>
+
+<style>
+    .active {
+        color: black !important;
+        background: white;
+    }
+</style>
 
 </html>
