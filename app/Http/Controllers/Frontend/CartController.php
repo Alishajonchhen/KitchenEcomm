@@ -18,9 +18,12 @@ class CartController extends Controller
      */
     public function index()
     {
-        $items = Cart::with('product')->where('user_id', Auth::id())->orderBy('id', 'desc')->get();
+        $items = Cart::with('product')->where('user_id', Auth::id())
+            ->where('is_checked_out', 0)
+            ->orderBy('id', 'desc')
+            ->get();
         // return $items;
-        return view("front.addTocart", compact('items'));
+        return view("front.viewCart", compact('items'));
     }
 
     /**
@@ -30,9 +33,8 @@ class CartController extends Controller
      * 
      * @return JSONResponse
      */
-    public function addToCart($productId)
+    public function addToCart(Request $request, $productId)
     {
-        // return response($productId);
         $product = Product::findOrFail($productId);
         $cartExist = Cart::where('product_id', $productId)
             ->where('is_checked_out', 0)
@@ -49,10 +51,46 @@ class CartController extends Controller
 
             ]);
         } else {
-            Cart::where('id', $cartExist->id)->increment('quantity', 1);
+            if ($request->qty) {
+                $qty = $request->qty;
+                $cart = Cart::where('id', $cartExist->id)->first();
+                $cart->update(['quantity' => $qty, 'total' => ($cart->price * $qty)]);
+            } else {
+                $cart = Cart::where('id', $cartExist->id)->first();
+                $cart->increment('quantity', 1, ['total' => ($cart->price * $cart->quantity)]);
+            }
         }
 
+        $count = Cart::where('is_checked_out', 0)
+            ->where('user_id', Auth::id())
+            ->count();
+        return response()->json(['success' => "Product added to cart successfully.", 'data' => $count], 200);
+    }
 
-        return response()->json(['success' => "Product added to cart successfully."], 200);
+    /**
+     * Remove from the cart
+     * 
+     * @param int $id
+     * @return JSONResponse
+     */
+    public function removeItemFromCart($id)
+    {
+        return response($id);
+    }
+
+
+    /**
+     * Checkout view page
+     * 
+     * @return Render
+     */
+    public function checkoutOrder()
+    {
+        $user = Auth::user();
+        $carts = Cart::where('is_checked_out', 0)
+            ->where('user_id', Auth::id())
+            ->get();
+
+        return view('front.checkout', compact('user', 'carts'));
     }
 }

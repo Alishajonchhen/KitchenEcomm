@@ -28,7 +28,8 @@ class HomeController extends Controller
 
     public function home()
     {
-        $categories = Category::where('status', 1)->get();
+        $categories = Category::with('products:id,category_id')->where('status', 1)->get();
+
         return view('front.home', compact('categories'));
     }
 }

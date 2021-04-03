@@ -22,4 +22,17 @@ class CategoryController extends Controller
         // return $products;
         return view("front.product", compact('category', 'products'));
     }
+
+    /**
+     * Show specific product Detail
+     * 
+     * @param Int $id
+     * @return Renderable
+     */
+    public function productDetail($id)
+    {
+        $product = Product::where('id', $id)->where('status', 1)->first();
+
+        return view('front.productDetail', compact('product'));
+    }
 }

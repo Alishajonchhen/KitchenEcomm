@@ -18,4 +18,9 @@ class Category extends Model
     {
         return "/lib/Images/categories/";
     }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'category_id', 'id');
+    }
 }

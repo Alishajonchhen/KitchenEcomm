@@ -1,9 +1,8 @@
 @extends('layouts.welcome')
 @section('body')
 <div class="container product-list">
-    <h4>{{ strtoupper($category->slug)." >> PRODUCTS" }}</h4>
+    <h4>{{ strtoupper($product->product_name) }}</h4>
     <div class="row">
-        @forelse ($products as $product)
         <div class="col-md-3 col-sm-6" style="margin-bottom: 10px;">
             <div class="product-grid">
                 <div class="product-image">
@@ -22,9 +21,7 @@
                 </div>
 
                 <div class="product-content">
-                    <h3 class="title"><a
-                            href="{{ route('frontend-product-detail', $product->id) }}">{{ $product->product_name }}</a>
-                    </h3>
+                    <h3 class="title"><a href="#">{{ $product->product_name }}</a></h3>
                     {{-- <div class="price">$16.00
                         <span>$20.00</span>
                     </div> --}}
@@ -41,11 +38,6 @@
                 </div>
             </div>
         </div>
-        @empty
-        <div class="col-md-3 col-sm-6" style="margin-bottom: 10px;">
-            <p>No Products</p>
-        </div>
-        @endforelse
 
     </div>
 </div>
