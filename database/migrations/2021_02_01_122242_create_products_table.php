@@ -18,6 +18,8 @@ class CreateProductsTable extends Migration
             $table->string('product_code')->nullable();
             $table->string('product_name');
             $table->float('product_price');
+            $table->double('quantity');
+            $table->double('available');
             $table->float('product_discount')->nullable();
             $table->text('product_description');
             $table->float('product_voltage')->nullable();

@@ -67,7 +67,15 @@
                                     required style="height: 25px;" value="{{$editData->product_price}}">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="quantity" class="col-md-10 col-form-label text-md-right">Product
+                                Quantity *</label>
 
+                            <div class="col-md-12" style="margin-left: -300px;">
+                                <input name="quantity" type="number" class="form-control" min="1" required
+                                    style="height: 25px;" value="{{$editData->quantity}}" disabled>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="product_discount" class="col-md-10 col-form-label text-md-right">Product
                                 Discount</label>
