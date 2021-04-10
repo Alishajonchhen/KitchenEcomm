@@ -107,7 +107,7 @@ html, body{
 
 /*Jumbotron*/
 .jumbotron {
-    background-image: url('../Images/kitchen.jpg');
+    background-image: url('../Images/kitchen.jpeg');
     width: 100%;
     height: 600px;
     background-size: cover;
@@ -119,6 +119,7 @@ html, body{
     font-family: "Courier New", Courier, monospace;
     text-align: center;
     margin-top: 210px;
+    color: #ffff9e;
 }
 
 #subtitle{
@@ -127,7 +128,7 @@ html, body{
 }
 
 .btn-lg{
-    margin-left: 525px;
+    margin-left: 515px;
     background-color: #ffc620;
 }
 
@@ -146,10 +147,13 @@ html, body{
 
 #heading{
     color: black;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 #heading-para{
-    color: black;
+    font-size: 25px;
+    color: whitesmoke;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 
@@ -232,6 +236,7 @@ html, body{
     text-align: center;
     padding-top: 20px;
     color: #1b6d85;
+    font-family: "Baskerville Old Face";
 }
 
 #box{
@@ -246,10 +251,11 @@ html, body{
 
 .para{
     text-indent: 40px;
-    font-size: 21px;
+    font-size: 24px;
     margin-left: 60px;
     text-align: justify;
     margin-right: 60px;
+    font-family: "Baskerville Old Face";
 }
 
 .col-md-4 .text-center{

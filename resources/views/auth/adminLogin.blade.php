@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;" >
                 <div class="box">
-                    <div id="image-holder"></div>
+                    <img src="{{asset('lib/Images/Login/adlog.jpg')}}" alt="Kitchen" style="height: 460px; width: 400px;">
                     <div class="right">
                         <h1>Admin Login</h1>
                         <hr>

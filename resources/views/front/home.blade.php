@@ -11,12 +11,14 @@
         height: 50px;
         border: none;
         outline: none;
-        color: #fff;
-        background: #111;
+        color: white;
+        background: #ffc620;
         cursor: pointer;
         position: relative;
         z-index: 0;
+        font-size: 18px;
         border-radius: 10px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
 
     .glow-on-hover:before {
@@ -81,7 +83,7 @@
             <div class="Title">
                 <h1 id="banner"><b>Kitchen and Appliances</b></h1>
                 <p id="subtitle"><b>Lower Prices and Best Products</b></p>
-                <a class="btn" href="#" role="button">Shop Now</a>
+                <a class="btn btn-lg" href="#" role="button" style="background-color: black; color: white">Shop Now</a>
             </div>
         </div>
     </div>
@@ -135,11 +137,11 @@
         <div class="row">
             <div class="about">
                 <h1 id="heading">About Us</h1>
-                <p id="heading-para"><b>Lorem ipsum, or lipsum as it is sometimes known, is dummy text
-                        used in laying out print, graphic or web designs. The passage is attributed
-                        to an unknown typesetter in the 15th century who is thought to have
-                        scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type
-                        specimen book.</b></p>
+                <p id="heading-para"><b>BetterBuy is the fastest, easiest and
+                    most convenient way to enjoy the best kitchen product of your favourite
+                        brand at home, at the office or wherever you want to.</b></p>
+                <p id="heading-para"><b>We know that your time is valuable and sometimes every minute in the day counts.
+                        That’s why we deliver! So you can spend more time doing the things you love.</b></p>
                 <button class="glow-on-hover" type="button" style="margin-left: 10px;"><a
                         href="{{route('guide.about')}}">Learn More -></a></button>
             </div>

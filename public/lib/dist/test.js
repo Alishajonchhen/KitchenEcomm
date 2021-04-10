@@ -1,18 +1,3 @@
-//Set variable to 0
-var col=0;
-function changeColor() {
-    //Changes color to white
-    if(col===0)
-    {
-        document.getElementById("banner").style.color="white";
-        col=1;
-        //Changes color to yellow
-    }else{
-        document.getElementById("banner").style.color=" #ffc620";
-        col=0;
-    }
-}
-setInterval(changeColor,3000);
 
 // Set the date we're counting down to
 var countDownDate = new Date("Dec 5, 2021 15:37:25").getTime();

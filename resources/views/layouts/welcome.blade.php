@@ -66,23 +66,26 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown"
                         style="margin-right: -95px;">
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                        </form>
-
-                        <a class="dropdown-item" href="{{ route('order-track') }}">
-                            Order Track
-                        </a>
                         <div>
-
                             <a class="dropdown-item" href="{{ route('user-profile') }}">
-                                Profile
+                                My Profile
                             </a>
+                        </div>
+                        <div>
+                            <a class="dropdown-item" href="{{ route('order-track') }}">
+                                Order History
+                            </a>
+                        </div>
+                        <hr>
+                        <div>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            </form>
                         </div>
                     </div>
 
@@ -191,13 +194,13 @@
                         $('.search-list').append(`
                         <li>
                         <a href="/category/${item.slug}">${item.name}</a>
-                        
+
                         </li>
                         `);
                         }
                         });
                     }
-                 
+
                 }
             }).fail(function(data){
                 console.log(data);
@@ -209,7 +212,7 @@
             $('.search-list').attr("hidden", true);
         })
     })
-   
+
 </script>
 
 </html>

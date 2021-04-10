@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;">
                 <div class="card">
-                    <div id="image"></div>
+                    <img src="{{asset('lib/Images/Login/adreg.jpg')}}" alt="Kitchen" style="height: 560px; width: 400px;">
                     <div class="right">
                         <h1>Admin Register</h1>
                         <hr>

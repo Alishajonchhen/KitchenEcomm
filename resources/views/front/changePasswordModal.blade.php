@@ -26,7 +26,8 @@
                             <input type="password" class="form-control" name="password_confirmation">
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-primary" type="submit" style="background-color: black;
+                     color: white;">Update</button>
                 </form>
             </div>
         </div>
@@ -36,5 +37,9 @@
     .pass {
         margin-right: 4px !important;
         margin-left: 4px !important;
+    }
+
+    .modal-title{
+        font-family: Baskerville Old Face;
     }
 </style>
