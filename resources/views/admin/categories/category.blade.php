@@ -71,7 +71,7 @@
                             @if ($category->category_image)
 
                             <img src="{{ $category->image_path.$category->category_image }}"
-                                alt="{{ $category->slug }}">
+                                alt="{{ $category->slug }}" height="40" width="40">
                             @else
                             -
                             @endif
@@ -90,7 +90,7 @@
                             <form action="{{ route('delete-category', $category->id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn btn-danger btn-xs" type="submit"
+                                <button class="btn btn-danger btn-sm" type="submit"
                                     onclick="return confirm('Are you Sure?')">Delete</button>
                             </form>
                     </tr>
