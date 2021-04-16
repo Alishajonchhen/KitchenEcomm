@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderItem;
+use App\Product;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -33,19 +35,38 @@ class OrderController extends Controller
     public function updateStatus(Request $request, $id)
     {
 
-        $order = Order::where('id', $id)->first();
-        if ($request->status == 1) {
-            $order->update(['status' => 1, 'completed_by' => Auth::id()]);
-            OrderItem::where('order_id', $order->id)
-                ->where('status', '!=', 2)
-                ->update(['status' => 1]);
+        $order = Order::with('items')->where('id', $id)->first();
+        DB::beginTransaction();
+        try {
+            if ($request->status == 1) {
+                $order->update(['status' => 1, 'completed_by' => Auth::id()]);
+                OrderItem::where('order_id', $order->id)
+                    ->where('status', '!=', 2)
+                    ->update(['status' => 1]);
+
+                //this updates the available qunatity of the product
+                foreach ($order->items as $key => $item) {
+
+                    $product = Product::where('id', $item->product_id)->first();
+                    if ($item->quantity <= $product->available) {
+
+                        $product->update(['available' => ($product->available - $item->quantity)]);
+                    } else {
+                        return redirect()->back()->with('error', 'Not enough ' . $product->product_name . ' available to sell.Please add stock first.');
+                    }
+                }
+            }
+            if ($request->status == 2) {
+                $order->update(['status' => 2, 'canceled_by' => Auth::id(), 'canceled_date' => today()]);
+                OrderItem::where('order_id', $order->id)
+                    ->where('status', '!=', 1)
+                    ->update(['status' => 2, 'canceled_by' => Auth::id()]);
+            }
+            DB::commit();
+        } catch (Exception $e) {
+            return redirect()->back()->with('success', 'Something went wrong');
         }
-        if ($request->status == 2) {
-            $order->update(['status' => 2, 'canceled_by' => Auth::id(), 'canceled_date' => today()]);
-            OrderItem::where('order_id', $order->id)
-                ->where('status', '!=', 1)
-                ->update(['status' => 2, 'canceled_by' => Auth::id()]);
-        }
+
         return redirect()->back()->with('success', 'Order status updated successfully.');
     }
 

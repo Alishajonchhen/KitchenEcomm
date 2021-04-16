@@ -48,14 +48,24 @@
                                     required style="height: 25px;">
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="quantity" class="col-md-10 col-form-label text-md-right">Product
+                                Quantity *</label>
+
+                            <div class="col-md-12" style="margin-left: -300px;">
+                                <input name="quantity" type="number" class="form-control" min="1" required
+                                    style="height: 25px;" value="1">
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="product_discount" class="col-md-10 col-form-label text-md-right">Product
                                 Discount</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
-                                <input name="product_discount" type="text" class="form-control"
-                                    placeholder="Product Discount" style="height: 25px;">
+                                <input name="product_discount" type="number" class="form-control"
+                                    placeholder="Product Discount" style="height: 25px;" min="0">
                             </div>
                         </div>
 

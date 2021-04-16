@@ -10,9 +10,11 @@
             <table class="table table-hover border bg-white">
                 <thead>
                     <tr>
+
                         <th>
                             <h4> <b> Product Details </b> </h4>
                         </th>
+
                         <th>
                             <h4> <b> Price </h4> <b>
                         </th>
@@ -36,6 +38,7 @@
                     $total = $total + $item->total;
                     @endphp
                     <tr>
+
                         <td>
                             <div class="row">
                                 <div class="col-lg-2 Product-img">
@@ -43,33 +46,35 @@
                                         class="img-responsive" />
                                 </div>
                                 <div class="col-lg-10">
-                                    <h5 class="nomargin"> <b> {{ $item->product->name }} </b> </h5>
+                                    <a href="{{ route('frontend-product-detail', $item->product->id) }}">
+                                        <h5 class="nomargin"> <b> {{ $item->product->product_name }} </b> </h5>
+                                    </a>
                                     <p> {{ $item->product->product_description }} </p>
                                 </div>
                             </div>
                         </td>
+
                         <td> <strong> {{ $item->price  }} </strong> </td>
                         <td data-th="Quantity">
                             <input type="number" class="form-control text-center item-qty"
-                                value="{{ $item->quantity  }}" min="1" id="item{{ $item->id }}"
-                                data-price="{{ $item->product->product_price }}" data-id="{{ $item->id }}" disabled>
-                            <button class="btn btn-success edit" id="edit{{ $item->id }}" data-id="{{ $item->id }}"
-                                type="submit">Edit</button>
-                            <button class="btn btn-success save" id="save{{ $item->id }}" style="display:none"
-                                data-id="{{ $item->id }}"
-                                data-href="{{ route('add-to-cart', $item->id) }}">Save</button>
-                            <button class="btn btn-success cancel" id="cancel{{ $item->id }}" style="display: none;"
-                                data-id="{{ $item->id }}">Cancel</button>
+                                value="{{ $item->quantity  }}" min="1" id="item{{  $item->product->id }}"
+                                data-price="{{ $item->product->product_price }}" data-id="{{  $item->product->id }}"
+                                disabled>
+                            <button class="btn btn-success edit" id="edit{{  $item->product->id }}"
+                                data-id="{{  $item->product->id }}" type="submit">Edit</button>
+                            <button class="btn btn-success save" id="save{{ $item->product->id }}" style="display:none"
+                                data-id="{{ $item->product->id }}"
+                                data-href="{{ route('add-to-cart', $item->product->id) }}">Save</button>
+                            <button class="btn btn-success cancel" id="cancel{{  $item->product->id }}"
+                                style="display: none;" data-id="{{  $item->product->id }}">Cancel</button>
                         </td>
                         <td>
 
-                            <strong id="total{{ $item->id }}" class="total">
+                            <strong id="total{{ $item->product->id }}" class="total">
                                 {{ $item->price * $item->quantity }}</strong>
                         </td>
                         <td class="actions" data-th="" style="width:10%;">
-                            {{-- <button class="btn btn-info btn-sm"> <span class="glyphicon glyphicon-shopping-cart">
-                                </span>
-                            </button> --}}
+
                             <button class="btn btn-danger btn-sm remove" id="remove{{ $item->id }}"
                                 data-href="{{ route('remove-item', $item->id) }}"> <i class="icon-trash"> </i> </button>
                         </td>
@@ -77,7 +82,7 @@
                     @empty
                     <tr>
                         <td colspan="5">
-                            No items added . SHOW NOW.
+                            No items added . SHOP NOW.
                         </td>
                     </tr>
                     @endforelse
@@ -124,7 +129,6 @@
             let productId = $(this).attr('data-id');
             let price = $(this).attr('data-price');
             let subTotal = qty*price;
-            console.log(productId);
             //Once the qty changes re render the sub total of that item;
             $("#total"+productId).html(subTotal.toFixed(2));
 
@@ -140,7 +144,6 @@
 
         //when edit button is pressed
         $(".edit").on('click', function(){
-            console.log('asdasd');
             let id = $(this).attr('data-id');
             $("#item"+id).attr('disabled', false);
             $("#edit"+id).css('display', 'none');
@@ -177,22 +180,28 @@
 
        //when the remove icon is clicked.. removes the item from cart ;) 
        $(".remove").on("click", function(){
-           let id = $(this).attr('data-id');
-           let removeUrl = $(this).attr('data-href');
-           let that = this;
-            $.ajax({
-            url: removeUrl,
-            method:'DELETE',
-            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-            success:function(data){
-                //removing the clicked product from the frontend table
-                $(that).closest('tr').remove();
-            },
-            error:function(err){
-                console.log(err);
-            }
-            });
+           let res = confirm("Do you really want to remove this item?");
+               if(res == true){
+                    let id = $(this).attr('data-id');
+                    let removeUrl = $(this).attr('data-href');
+                    let that = this;
+                    $.ajax({
+                        url: removeUrl,
+                        method:'DELETE',
+                        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                        success:function(data){
+                        //removing the clicked product from the frontend table
+                        $(that).closest('tr').remove();
+                        $("#cart-item-count").html(parseInt(data.data));
+                        },
+                        error:function(err){
+                            console.log(err);
+                        }
+                    });
+                }
+         
        });
+       
      
     });
     
