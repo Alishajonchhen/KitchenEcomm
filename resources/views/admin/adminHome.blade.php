@@ -50,7 +50,6 @@
     <br>
     <br>
     @yield('content')
-
     <footer class="footer">
         <div class="ct-footer-post">
             <div class="container">

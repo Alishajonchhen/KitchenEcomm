@@ -29,7 +29,18 @@
     </div>
     @endif
 </div>
-
+<div class="card-body" style="width: 900px; margin-left:500px; ">
+    @if(session('error'))
+    <div class="alert alert-danger" role="alert">
+        <p>{{session('error')}}</p>
+    </div>
+    @endif
+</div>
+@if ($errors)
+@foreach($errors->all() as $error)
+<li style="list-style-type:none; color:red;"> {{ $error }}</li>
+@endforeach
+@endif
 <!-- DataTales -->
 <div id="box">
     <h2>Product List</h2>
@@ -42,10 +53,10 @@
                         <th>S.N.</th>
                         <th>Product code</th>
                         <th>Product Name</th>
+                        <th>Available</th>
+                        <th>Quantity</th>
                         <th>Product Price</th>
-                        <th>Product Discount</th>
                         <th>Product Description</th>
-                        <th>Product Voltage</th>
                         <th>Product Color</th>
                         <th>Product Image</th>
                         <th>Category</th>
@@ -59,10 +70,10 @@
                         <td>{{ ++$key }}</td>
                         <td>{{$product->product_code}}</td>
                         <td>{{$product->product_name}}</td>
+                        <td>{{$product->available}}</td>
+                        <td>{{$product->quantity}}</td>
                         <td>{{$product->product_price}}</td>
-                        <td>{{$product->product_discount}}</td>
                         <td>{{ substr($product->product_description,0,100)}}</td>
-                        <td>{{$product->product_voltage}}</td>
                         <td>{{$product->product_color}}</td>
                         <td>
                             <img src="{{ asset($product->image_path.$product->product_image) }}" height="20" width="30"

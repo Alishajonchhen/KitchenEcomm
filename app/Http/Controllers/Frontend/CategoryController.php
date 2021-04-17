@@ -17,7 +17,9 @@ class CategoryController extends Controller
     public function index($slug)
     {
         $category = Category::where('slug', $slug)->first();
-        $products = Product::with('category')->where('category_id', $category->id)->get();
+        $products = Product::with('category')
+            ->where('available', '>', 0)
+            ->where('category_id', $category->id)->get();
         // return $category;
         // return $products;
         return view("front.product", compact('category', 'products'));

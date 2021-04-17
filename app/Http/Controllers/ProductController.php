@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\OrderItem;
 use Illuminate\Support\Str;
 use App\Product;
 use App\Traits\UploadImage;
@@ -40,6 +41,8 @@ class ProductController extends Controller
         $new->product_name = $request->input('product_name');
         $new->product_price = $request->input('product_price');
         $new->product_discount = $request->input('product_discount');
+        $new->quantity = $request->input('quantity');
+        $new->available = $request->input('quantity');
         $new->product_description = $request->input('product_description');
         $new->product_voltage = $request->input('product_voltage');
         $new->product_color = $request->input('product_color');
@@ -59,13 +62,19 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::findOrFail($id);
-        if ($product->product_image) {
-            $image_path = public_path() . '/lib/Images/products/' . $product->product_image;
-            if (file_exists($image_path)) {
-                unlink($image_path);
+
+        $orderItem = OrderItem::where('product_id', $id)->first();
+        if (!$orderItem) {
+            if ($product->product_image) {
+                $image_path = public_path() . '/lib/Images/products/' . $product->product_image;
+                if (file_exists($image_path)) {
+                    unlink($image_path);
+                }
             }
+            $product->delete();
+        } else {
+            return redirect()->back()->with('error', 'Some quantity of product is already sold. so it cannot be canceled.Please deactive the item.');
         }
-        $product->delete();
         return redirect()->route('admin.products.product')->with('success', 'Product is deleted successfully.');
     }
 

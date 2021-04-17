@@ -258,7 +258,14 @@
 
     @yield('scripts')
 </body>
-
+<script>
+    //fade time out to remove/hide the alert
+    window.setTimeout(function() {
+    $(".alert").fadeTo(300, 0).slideUp(300, function() {
+    $(this).remove();
+    });
+    }, 4000);
+</script>
 <style>
     .active {
         color: black !important;

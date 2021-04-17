@@ -35,7 +35,7 @@ class CartController extends Controller
      */
     public function addToCart(Request $request, $productId)
     {
-        $product = Product::findOrFail($productId);
+        $product = Product::find($productId);
         $cartExist = Cart::where('product_id', $productId)
             ->where('is_checked_out', 0)
             ->where('user_id', Auth::id())
@@ -51,13 +51,19 @@ class CartController extends Controller
 
             ]);
         } else {
-            if ($request->qty) {
+            if ($cartExist && $request->qty && isset($request->singlePage)) {
                 $qty = $request->qty;
                 $cart = Cart::where('id', $cartExist->id)->first();
-                $cart->update(['quantity' => $qty, 'total' => ($cart->price * $qty)]);
+                $cart->update(['quantity' => $qty + $cart->quantity, 'total' => ($cart->price * ($qty + $cart->quantity))]);
             } else {
-                $cart = Cart::where('id', $cartExist->id)->first();
-                $cart->increment('quantity', 1, ['total' => ($cart->price * $cart->quantity)]);
+                if ($request->qty) {
+                    $qty = $request->qty;
+                    $cart = Cart::where('id', $cartExist->id)->first();
+                    $cart->update(['quantity' => $qty, 'total' => ($cart->price * $qty)]);
+                } else {
+                    $cart = Cart::where('id', $cartExist->id)->first();
+                    $cart->increment('quantity', 1, ['total' => ($cart->price * $cart->quantity)]);
+                }
             }
         }
 
@@ -76,6 +82,16 @@ class CartController extends Controller
     public function removeItemFromCart($id)
     {
         return response($id);
+        $cart = Cart::where('id', $id)->where('is_checked_out', 0)->find();
+        if ($cart) {
+            $cart->delete();
+        } else {
+            return response()->json(['error' => "Problem deleting cart."], 500);
+        }
+        $count = Cart::where('is_checked_out', 0)
+            ->where('user_id', Auth::id())
+            ->count();
+        return response()->json(['success' => "Cart deleted successfully.", 'data' => $count], 200);
     }
 
 

@@ -31,6 +31,13 @@
     </div>
     @endif
 </div>
+<div class="card-body" style="width: 900px; margin-left:500px; ">
+    @if(session('error'))
+    <div class="alert alert-danger" role="alert">
+        <p>{{session('error')}}</p>
+    </div>
+    @endif
+</div>
 
 <!-- DataTales -->
 <div id="box">

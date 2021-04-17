@@ -11,20 +11,6 @@
                         <hr>
                         <form method="POST" action="{{ route('admin.login.submit') }}">
                             @csrf
-<div class="container">
-    <div class="row">
-        <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;">
-            <div class="row box">
-                <div class="col-md-6">
-                    <div id="image-holder"></div>
-                </div>
-                <div class="col-md-6" style="padding-left:22px;">
-                    <h1>Admin Login</h1>
-                    <hr>
-                    <form method="POST" action="{{ route('admin.login.submit') }}">
-                        @csrf
->>>>>>>
-
                         <div class="form-group">
                             <label for="email">EMAIL ADDRESS</label>
                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror"
