@@ -1,12 +1,14 @@
 @extends('layouts.welcome')
 @section('body')
 <div class="container product-list">
-    <h3>
-        Your Order Logs
+    <h3 style="font-family: Baskerville Old Face; font-size: 28px;">
+        My Order Logs
+        <br>
+        <br>
     </h3>
 
-    <div class="well">
-        <table class="table">
+    <div class="well" style="background-color: rgba(241,247,175,0.78); height: 203px;">
+        <table class="table" >
             <thead>
                 <tr>
                     <th>S.N.</th>
@@ -48,7 +50,7 @@
                         @elseif($item->status == 1)
                         <span class="label label-success">Success</span>
                         @else
-                        <span class="label label-important">Canceled</span>
+                        <span class="label label-important">Cancelled</span>
                         @endif
                     </td>
                     <td>
@@ -69,7 +71,7 @@
                 </tr>
                 @empty
                 <tr>
-                    <td colspan="6">No Orders.. <span> <a href="{{ route('front.home') }}">Shop Now</a></span></td>
+                    <td colspan="6">No Orders Yet. <span> <a href="{{ route('front.home') }}"> Shop Now</a></span></td>
                 </tr>
                 @endforelse
 

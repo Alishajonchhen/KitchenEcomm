@@ -23,7 +23,7 @@
 
     <style>
         #main {
-            background-color: rgba(228, 224, 255, 0.78);
+            background-color: #f2f2f2;
         }
 
         .form-control {
@@ -50,22 +50,32 @@
 
             color: white;
         }
+
+        ul.nav-sidebar a:hover{
+            background-color: #cccccc !important;
+        }
+
+        .active {
+            color: black !important;
+            background: white;
+        }
+
     </style>
 
 </head>
 
 <body>
-    <nav class="navbar bg-info navbar-fixed-top">
+    <nav class="navbar bg-info navbar-fixed-top" style="background-color:  #669999; height: 60px;">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-8 col-md-12">
                     <div id="navbar-brand" style="font-size: 25px; color: #d8d397;
-    margin-top: 10px; margin-bottom: -20px;">Admin <span style="color: white">Dashboard</span>
+    margin-top: 10px; margin-bottom: -20px;">Admin<span style="color: white">Dashboard</span>
                         <div class="input-group custom-search-form">
                             <label style="max-width: 350px;">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Search">
                             </label>
-                            <button id="search" type="button">
+                            <button id="search" class="btn">
                                 <i class="icon-search "></i>
                             </button>
                         </div>
@@ -73,10 +83,11 @@
                     </div>
 
                     <!--Right Side Of Navbar-->
-                    <ul class="nav navbar-top-links navbar-right">
+                    <ul class="nav navbar-top-links navbar-right" style="margin-top: -90px;">
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-envelope icon-2x"></i> <i class="icon-caret-down"></i>
+                                <i class="icon-envelope icon-2x" style="color: black"></i>
+                                <i class="icon-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-messages">
                                 <li>
@@ -104,7 +115,7 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-tasks icon-fw icon-2x"></i> <i class="icon-caret-down"></i>
+                                <i class="icon-tasks icon-fw icon-2x" style="color: black"></i> <i class="icon-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-tasks">
                                 <li>
@@ -136,7 +147,7 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-bell-alt icon-2x"></i> <i class="icon-caret-down"></i>
+                                <i class="icon-bell-alt icon-2x" style="color: black"></i> <i class="icon-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-alerts">
                                 <li>
@@ -162,19 +173,19 @@
                         <!-- /.dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                <i class="icon-user icon-2x"></i> <i class="icon-caret-down"></i>
+                                <i class="icon-user icon-2x" style="color: black"></i> <i class="icon-caret-down"></i>
                                 {{ \Auth::guard('admin')->user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-user">
-                                <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                                <li><a href="#"><i class="icon-user"></i>  User Profile</a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                <li><a href="#"><i class="icon-gear"></i>  Settings</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="{{ route('admin.logout') }}"
                                         onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out fa-fw"></i> Logout
+                                        <i class="icon-signout"></i> Logout
                                     </a>
                                     <form id="logout-form" action="{{ route('admin.logout') }}" method="POST">
                                         @csrf
@@ -197,23 +208,25 @@
     <br>
 
     <div id="mySidebar" class="col-sm-3 col-md-2 sidebar"
-        style="background-color: #366593; height: 950px; color: black; width: 300px;">
+        style="background-color:   #a3c2c2; height: 950px; color: black; width: 300px;">
         <ul class="nav nav-sidebar">
             <br>
             <br>
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: black">×</a>
             <br><br>
             <li><a href="{{route('admin.dashboard')}}"
-                    class="{{ Request::is('admin/welcome') ? "active" : '' }}">Overview </a></li>
-            <li><a href="#">Attendance</a></li>
+                    class="{{ Request::is('admin/welcome') ? "active" : '' }}" style="font-size: 18px; color: black;"> Overview </a></li>
             <li><a href="{{route('admin.categories.category')}}"
-                    class="{{ Request::is('admin/categories') || Request::is('admin/category/edit/*') ? "active" : '' }}">Category</a>
+                    class="{{ Request::is('admin/categories') || Request::is('admin/category/edit/*') ? "active" : '' }}"
+                   style="font-size: 18px;color: black;"> Category</a>
             </li>
             <li><a href="{{route('admin.products.product')}}"
-                    class="{{ Request::is('admin/products') || Request::is('admin/product/edit/*') ? "active" : '' }}">Products</a>
+                    class="{{ Request::is('admin/products') || Request::is('admin/product/edit/*') ? "active" : '' }}"
+                   style="font-size: 18px;color: black;">Products</a>
             </li>
             <li><a href="{{route('admin-order-list')}}"
-                    class="{{ Request::is('admin/orders') ? "active" : '' }}">Orders</a></li>
+                    class="{{ Request::is('admin/orders') ? "active" : '' }}"
+                   style="font-size: 18px;color: black;">Orders</a></li>
         </ul>
 
 
@@ -266,11 +279,5 @@
     });
     }, 4000);
 </script>
-<style>
-    .active {
-        color: black !important;
-        background: white;
-    }
-</style>
 
 </html>

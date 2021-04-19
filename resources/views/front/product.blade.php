@@ -1,7 +1,11 @@
 @extends('layouts.welcome')
 @section('body')
 <div class="container product-list">
-    <h4>{{ strtoupper($category->slug)." >> PRODUCTS" }}</h4>
+    <h4 style="font-family: Baskerville Old Face; font-size: 26px;">
+        {{ strtoupper($category->slug)." >> PRODUCTS" }}
+    <br>
+        <br>
+    </h4>
     <div class="row">
         @forelse ($products as $product)
         <div class="col-md-3 col-sm-6" style="margin-bottom: 10px;">
@@ -23,26 +27,28 @@
 
                 <div class="product-content">
                     <h3 class="title"><a
-                            href="{{ route('frontend-product-detail', $product->id) }}">{{ $product->product_name }}</a>
+                            href="{{ route('frontend-product-detail', $product->id) }}" style="font-family: Baskerville Old Face; font-size: 27px;">
+                            {{ $product->product_name }}</a>
                     </h3>
                     {{-- <div class="price">$16.00
                         <span>$20.00</span>
                     </div> --}}
-                    <div class="price">${{ $product->product_price }}
+                    <div class="price" style="font-size: 21px;">₹{{ $product->product_price }}
                         @if ($product->product_discount)
 
-                        <span>${{ ($product->product_discount/100)*$product->product_price + $product->product_price  }}</span>
+                        <span>₹{{ ($product->product_discount/100)*$product->product_price + $product->product_price  }}</span>
                         @endif
                     </div>
                     <a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
-                        id="product{{ $product->id }}" data-id="{{ $product->id }}">+
+                        id="product{{ $product->id }}" data-id="{{ $product->id }}"
+                       style="font-family: Baskerville Old Face; font-size: 14px; ">+
                         Add To
                         Cart</a>
                 </div>
             </div>
         </div>
         @empty
-        <div class="col-md-3 col-sm-6" style="margin-bottom: 10px;">
+        <div class="col-md-3 col-sm-6" style="margin-bottom: 10px; font-size: 20px;">
             <p>No Products</p>
         </div>
         @endforelse
@@ -56,7 +62,6 @@
     }
 
     .product-grid {
-        font-family: Raleway, sans-serif;
         text-align: center;
         padding: 0 0 72px;
         border: 1px solid rgba(0, 0, 0, .1);
@@ -126,7 +131,7 @@
     .product-grid .social li a {
         color: #fff;
         background-color: #333;
-        font-size: 16px;
+        font-size: 19px;
         line-height: 40px;
         text-align: center;
         height: 40px;
@@ -139,7 +144,7 @@
 
     .product-grid .social li a:hover {
         color: #fff;
-        background-color: #ef5777
+        background-color: rgba(191,177,96,0.78);
     }
 
     .product-grid .social li a:after,
@@ -147,7 +152,7 @@
         content: attr(data-tip);
         color: #fff;
         background-color: #000;
-        font-size: 12px;
+        font-size: 16px;
         letter-spacing: 1px;
         line-height: 20px;
         padding: 1px 5px;
@@ -177,7 +182,7 @@
     .product-grid .product-discount-label,
     .product-grid .product-new-label {
         color: #fff;
-        background-color: #ef5777;
+        background-color: black;
         font-size: 12px;
         text-transform: uppercase;
         padding: 2px 7px;
@@ -194,7 +199,7 @@
     }
 
     .product-grid .rating {
-        color: #FFD200;
+        color: black;
         font-size: 12px;
         padding: 12px 0 0;
         margin: 0;
@@ -239,7 +244,7 @@
 
     .product-grid .title a:hover,
     .product-grid:hover .title a {
-        color: #ef5777
+        color: black;
     }
 
     .product-grid .price {
@@ -281,7 +286,7 @@
             e.preventDefault();
             let url = $(this).attr('data-href');
             console.log(url);
-            //Making an ajax request to add item to cart :) 
+            //Making an ajax request to add item to cart :)
             $.get(url,function(data,status){
                 console.log(data);
             }).done(function(data){

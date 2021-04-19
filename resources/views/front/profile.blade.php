@@ -8,7 +8,7 @@
     </style>
 
 <div class="container product-list" style="min-height: 300px;">
-    <h3 style="font-family: Baskerville Old Face; font-size: 25px;">
+    <h3 style="font-family: Baskerville Old Face; font-size: 30px;">
         My Profile
         <br>
         <br>

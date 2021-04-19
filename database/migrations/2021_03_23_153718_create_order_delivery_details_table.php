@@ -19,7 +19,7 @@ class CreateOrderDeliveryDetailsTable extends Migration
             $table->string('full_name');
             $table->string('contact_number');
             //if system has predefiend delivery_location
-            $table->unsignedBigInteger('delivery_location')->nullable();
+            $table->string('delivery_location')->nullable();
             $table->string('email')->nullable();
             $table->string('address');
             $table->text('message')->nullable();

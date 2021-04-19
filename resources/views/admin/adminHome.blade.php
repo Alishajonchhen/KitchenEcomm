@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xs-8 col-md-12">
-                    <div class="navbar-brand">Admin <span style="color:white;">Dashboard</span></div>
+                    <div class="navbar-brand">Better<span style="color:white;">Buy</span></div>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">

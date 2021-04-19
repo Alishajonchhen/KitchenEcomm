@@ -70,16 +70,18 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="product_description" class="col-md-10 col-form-label text-md-right">Product
-                                Description *</label>
+                            <label for="status" class="col-md-10 col-form-label text-md-right">Status *</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
-                                <input name="product_description" type="text" class="form-control"
-                                    placeholder="Product Description" required style="height: 25px;">
+
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="1" selected>Active</option>
+                                    <option value="0">Inactive</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -258px;">
+                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -308px;">
                         <div class="form-group row">
                             <label for="product_voltage" class="col-md-10 col-form-label text-md-right">Product
                                 Voltage</label>
@@ -123,14 +125,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="status" class="col-md-10 col-form-label text-md-right">Status *</label>
+                            <label for="product_description" class="col-md-10 col-form-label text-md-right">Product
+                                Description *</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
-
-                                <select name="status" id="status" class="form-control" required>
-                                    <option value="1" selected>Active</option>
-                                    <option value="0">Passive</option>
-                                </select>
+                                <textarea name="product_description" type="text" class="form-control"
+                                       placeholder="Product Description" required style="height: 100px;">
+                                </textarea>
                             </div>
                         </div>
                     </div>
@@ -138,7 +139,8 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-success" style="margin-left: 300px; width: 170px;">
+                            <button type="submit" class="btn btn-success"
+                                    style="margin-left: 780px; width: 170px;">
                                 Add Product
                             </button>
                         </div>

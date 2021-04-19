@@ -29,9 +29,9 @@ html, body{
 .box #image-holder{
     background-size: cover;
     background-image: url("../Images/Login/log.jpg");
-    float: left;
     width: 400px;
     height: 460px;
+    margin-left: -10px;
 }
 
 .row .button{
@@ -83,7 +83,7 @@ html, body{
 .card #image{
     background-size: cover;
     background-image: url("../Images/Login/reg.jpg");
-    float: left;
+    margin-left: -10px;
     width: 400px;
     height: 560px;
 }
@@ -193,7 +193,7 @@ html, body{
 .footer{
     margin-top: 90px;
     display: flex;
-    background-color: #0f0f0f;
+    background-color:  #1e1e15;
     overflow-y: hidden;
 }
 

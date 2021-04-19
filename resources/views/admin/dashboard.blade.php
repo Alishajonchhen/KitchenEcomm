@@ -1,5 +1,10 @@
 @extends('admin.adminWelcome')
 @section('page-header')
+    <style>
+        .page-header{
+            margin-top: 50px;
+        }
+    </style>
 <div class="col-md-5">
     <div class="row col-md-12">
         <div class="col-md-6">
@@ -113,8 +118,10 @@
                         </div>
                     </div>
                 </div>
+                <h1 style="text-align: center">Welcome to Admin Dashboard!</h1>
             </div>
         </div>
     </div>
 </div>
+
 @endsection

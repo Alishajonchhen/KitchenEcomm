@@ -1,26 +1,27 @@
 @extends('admin.adminWelcome')
 @section('page-header')
-<div class="col-md-5">
-    <h1 class="page-header">Category</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
-                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
-            </ol>
+    <div class="col-md-5">
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <button class="btn" onclick="openNav()" style="position:absolute"> ☰ </button>
+                <h1 class="page-header">Category</h1>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @section('content')
 <style>
     #box {
         width: 900px;
-        height: 550px;
+        height: 600px;
         padding: 30px;
-        border: 2px solid black;
         margin-left: 500px;
         box-sizing: border-box;
         background-color: white;
+    }
+
+    .page-header{
+        margin-top: 50px;
     }
 </style>
 <div class="card-body" style="width: 900px; margin-left:500px; ">
@@ -71,7 +72,7 @@
                             @if ($category->category_image)
 
                             <img src="{{ $category->image_path.$category->category_image }}"
-                                alt="{{ $category->slug }}" height="40" width="40">
+                                alt="{{ $category->slug }}" height="130" width="130">
                             @else
                             -
                             @endif
@@ -84,14 +85,14 @@
                             @endif
                         </td>
                         <td>
-                            <a href="{{route('edit-category',$category->id)}}" class="btn btn-info btn-sm">Edit </a>
+                            <a href="{{route('edit-category',$category->id)}}" class="btn btn-info btn-xm" style="font-size: 14px;color: black">Edit </a>
                         </td>
                         <td>
                             <form action="{{ route('delete-category', $category->id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn btn-danger btn-sm" type="submit"
-                                    onclick="return confirm('Are you Sure?')">Delete</button>
+                                <button class="btn btn-danger btn-xm" type="submit"
+                                    onclick="return confirm('Are you Sure?')" style="font-size: 14px;color: black">Delete</button>
                             </form>
                     </tr>
                     @endforeach

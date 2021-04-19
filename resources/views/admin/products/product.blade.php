@@ -13,12 +13,15 @@
 <style>
     #box {
         width: 1170px;
-        height: 500px;
+        height: 550px;
         padding: 5px;
-        border: 2px solid black;
         margin-left: 330px;
         box-sizing: border-box;
         background-color: white;
+    }
+
+    .page-header{
+        margin-top: 50px;
     }
 </style>
 
@@ -56,11 +59,11 @@
                         <th>Available</th>
                         <th>Quantity</th>
                         <th>Product Price</th>
-                        <th>Product Description</th>
+                        <th>Status</th>
                         <th>Product Color</th>
                         <th>Product Image</th>
                         <th>Category</th>
-                        <th>Status</th>
+                        <th>Product Description</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -73,29 +76,29 @@
                         <td>{{$product->available}}</td>
                         <td>{{$product->quantity}}</td>
                         <td>{{$product->product_price}}</td>
-                        <td>{{ substr($product->product_description,0,100)}}</td>
+                        <td>
+                            @if($product->status==1)
+                                Active
+                            @else
+                                Inactive
+                            @endif
+                        </td>
                         <td>{{$product->product_color}}</td>
                         <td>
-                            <img src="{{ asset($product->image_path.$product->product_image) }}" height="20" width="30"
+                            <img src="{{ asset($product->image_path.$product->product_image) }}" height="130" width="130"
                                 alt="Product Image">
                         </td>
                         <td>{{$product->category->name}}</td>
+                        <td>{{ substr($product->product_description,0,100)}}</td>
                         <td>
-                            @if($product->status==1)
-                            Active
-                            @else
-                            Inactive
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{route('edit-product',$product->id )}}" class="btn btn-primary btn-xs">Edit</a>
+                            <a href="{{route('edit-product',$product->id )}}" class="btn btn-primary btn-xm" style="font-size: 14px;color: black">Edit</a>
 
 
                             <form action="{{ route('delete-product', $product->id) }}" method="post">
                                 @csrf
                                 @method("DELETE")
-                                <button class="btn btn-danger btn-xs" type="submit"
-                                    onclick="return confirm('Are you Sure?')">Delete</button>
+                                <button class="btn btn-danger btn-xm" type="submit"
+                                    onclick="return confirm('Are you Sure?')" style="font-size: 14px;color: black">Delete</button>
                             </form>
 
                         </td>

@@ -92,9 +92,6 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], function () {
 
-    //Dashboard
-    Route::get('/', 'AdminController@index');
-
     //Login route for admin
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');

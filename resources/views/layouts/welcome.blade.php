@@ -34,7 +34,7 @@
                         </div>
                         <ul class="search-list" hidden>
                         </ul>
-                        <button id="search_product" class="btn">Search</button>
+                        <button id="search_product" class="btn"><i class="icon-search" style="padding: 10px"></i></button>
                     </form>
                 </div>
             </div>
@@ -68,19 +68,19 @@
                         style="margin-right: -95px;">
                         <div>
                             <a class="dropdown-item" href="{{ route('user-profile') }}">
-                                My Profile
+                                <i class="icon-user" style="padding: 10px"></i>   My Profile
                             </a>
                         </div>
                         <div>
                             <a class="dropdown-item" href="{{ route('order-track') }}">
-                                Order History
+                                <i class="icon-book" style="padding: 10px"></i>  Order History
                             </a>
                         </div>
                         <hr>
                         <div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                Logout
+                                <i class="icon-signout" style="padding: 10px"></i> Logout
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">

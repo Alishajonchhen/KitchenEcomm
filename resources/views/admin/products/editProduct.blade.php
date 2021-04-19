@@ -1,15 +1,13 @@
 @extends('admin.adminWelcome')
 @section('page-header')
-<div class="col-md-5">
-    <h1 class="page-header">Edit Product</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
-                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
-            </ol>
+    <div class="col-md-5">
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <button class="btn" onclick="openNav()" style="position:absolute"> ☰ </button>
+                <h1 class="page-header">Edit Product</h1>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @section('content')
 <style>
@@ -92,14 +90,14 @@
                                 Description *</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
-                                <input name="product_description" type="text" class="form-control"
-                                    placeholder="Product Description" required style="height: 25px;"
-                                    value="{{$editData->product_description}}">
+                                <textarea name="product_description" type="text" class="form-control"
+                                    placeholder="Product Description" required style="height: 100px;">
+                                    {{$editData->product_description}}</textarea>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -258px;">
+                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -300px;">
                         <div class="form-group row">
                             <label for="product_voltage" class="col-md-10 col-form-label text-md-right">Product
                                 Voltage</label>
@@ -162,7 +160,7 @@
                                         @endif>Active</option>
                                     <option value="0" @if ($editData->status == 0)
                                         selected
-                                        @endif>Passive</option>
+                                        @endif>Inactive</option>
 
                                 </select>
                             </div>
@@ -171,7 +169,8 @@
 
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
-                            <button type="submit" class="btn btn-success" style=" margin-left: 100px; width: 190px;">
+                            <button type="submit" class="btn btn-success"
+                                    style=" margin-left: 750px; width: 190px;">
                                 Update Data
                             </button>
                         </div>
