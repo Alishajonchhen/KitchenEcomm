@@ -25,8 +25,11 @@ View::composer('*', function ($view) {
     $cartCount = Cart::where('is_checked_out', 0)->where('user_id', Auth::id())->count();
     return $view->with(['categories' => $categories, 'cartCount' => $cartCount]);
 });
-
+Route::get('/', function () {
+    return redirect()->route('login');
+});
 Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], function () {
+
     /*Route for Home page*/
     Route::get('/home', [
         'uses' => 'HomeController@home',

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CartController extends Controller
 {
@@ -81,17 +82,24 @@ class CartController extends Controller
      */
     public function removeItemFromCart($id)
     {
-        return response($id);
-        $cart = Cart::where('id', $id)->where('is_checked_out', 0)->find();
-        if ($cart) {
-            $cart->delete();
-        } else {
-            return response()->json(['error' => "Problem deleting cart."], 500);
+        DB::beginTransaction();
+        try {
+            $cart = Cart::where('id', $id)->where('is_checked_out', 0)->first();
+            if ($cart) {
+                $cart->delete();
+            } else {
+                DB::rollback();
+                return response()->json(['error' => "Problem deleting cart."], 500);
+            }
+            $count = Cart::where('is_checked_out', 0)
+                ->where('user_id', Auth::id())
+                ->count();
+            DB::commit();
+            return response()->json(['success' => "Cart deleted successfully.", 'data' => $count], 200);
+        } catch (Exception $th) {
+            DB::rollback();
+            return response()->json(['error' => "Cart deleted successfully.", 'data' => $count], 200);
         }
-        $count = Cart::where('is_checked_out', 0)
-            ->where('user_id', Auth::id())
-            ->count();
-        return response()->json(['success' => "Cart deleted successfully.", 'data' => $count], 200);
     }
 
 

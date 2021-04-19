@@ -191,6 +191,7 @@
                         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                         success:function(data){
                         //removing the clicked product from the frontend table
+                        alert('Product removed from successfully.');
                         $(that).closest('tr').remove();
                         $("#cart-item-count").html(parseInt(data.data));
                         },
