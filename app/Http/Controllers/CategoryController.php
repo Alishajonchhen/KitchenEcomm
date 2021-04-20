@@ -68,10 +68,10 @@ class CategoryController extends Controller
 
     /**
      * Update the Category
-     * 
+     *
      * @param Request $request
      * @param int $id
-     * 
+     *
      * @return response
      */
     public function update(Request $request, $id)
@@ -92,7 +92,7 @@ class CategoryController extends Controller
         $category['slug'] = Str::slug($request->name);
         $category['status'] = $request->status;
         if ($request->hasFile('category_image')) {
-            //first remove the image 
+            //first remove the image
             if ($category->category_image) {
                 $image_path = public_path() . '/lib/Images/categories/' . $category->category_image;
                 if (file_exists($image_path)) {

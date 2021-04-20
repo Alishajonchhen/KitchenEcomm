@@ -199,7 +199,7 @@
             }).done(function(data){
                 alert('Product quantity updated  successfully.');
             }).fail(function(){
-             alert('Error occurred duing updating the product quantity.');
+             alert('Error occurred during updating the product quantity.');
             });
        })
 

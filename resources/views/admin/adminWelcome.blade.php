@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('lib/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('lib/dist/admin.css')}}">
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 
     {{-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
@@ -270,6 +272,7 @@
     </script>
 
     @yield('scripts')
+    @include('sweetalert::alert')
 </body>
 <script>
     //fade time out to remove/hide the alert

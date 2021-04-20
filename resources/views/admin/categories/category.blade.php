@@ -24,6 +24,7 @@
         margin-top: 50px;
     }
 </style>
+
 <div class="card-body" style="width: 900px; margin-left:500px; ">
     @if(session('success'))
     <div class="alert alert-success" role="alert">

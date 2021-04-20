@@ -17,6 +17,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{url('lib/bootstrap/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('lib/dist/style.css')}}">
+    @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
+
 </head>
 
 <body>
@@ -79,6 +81,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

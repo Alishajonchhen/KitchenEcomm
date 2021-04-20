@@ -71,7 +71,7 @@
 
                             <div class="col-md-12" style="margin-left: -300px;">
                                 <input name="quantity" type="number" class="form-control" min="1" required
-                                    style="height: 25px;" value="{{$editData->quantity}}" disabled>
+                                    style="height: 25px;" value="{{$editData->quantity}}" >
                             </div>
                         </div>
                         <div class="form-group row">

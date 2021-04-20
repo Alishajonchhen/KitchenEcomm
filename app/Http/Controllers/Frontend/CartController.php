@@ -13,8 +13,8 @@ class CartController extends Controller
     /**
      * List all the item added to cart
      * checkout
-     * 
-     * 
+     *
+     *
      */
     public function index()
     {
@@ -28,9 +28,9 @@ class CartController extends Controller
 
     /**
      * Add product to cart
-     * 
+     *
      * @param int $productId
-     * 
+     *
      * @return JSONResponse
      */
     public function addToCart(Request $request, $productId)
@@ -70,12 +70,13 @@ class CartController extends Controller
         $count = Cart::where('is_checked_out', 0)
             ->where('user_id', Auth::id())
             ->count();
+
         return response()->json(['success' => "Product added to cart successfully.", 'data' => $count], 200);
     }
 
     /**
      * Remove from the cart
-     * 
+     *
      * @param int $id
      * @return JSONResponse
      */
@@ -97,7 +98,7 @@ class CartController extends Controller
 
     /**
      * Checkout view page
-     * 
+     *
      * @return Render
      */
     public function checkoutOrder()

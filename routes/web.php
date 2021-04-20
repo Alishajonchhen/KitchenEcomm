@@ -56,11 +56,16 @@ Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], funct
         'uses' => 'GuideController@ShowTerm',
         'as' => 'guide.terms'
     ]);
+
+    Route::get('/contact', [
+        'uses' => 'GuideController@Contact',
+        'as' => 'contact.contact'
+    ]);
 });
 
 Route::group(['middleware' => 'prevent-back-history'], function () {
 
-    //##################################################3 USER ROUTEs ###########################################
+    //################################################## USER ROUTES ###########################################
 
     Route::get('/user/profile', [UserController::class, 'index'])->name('user-profile');
     Route::patch('/user/change/password', [UserController::class, 'changePassword'])->name('change-password');
