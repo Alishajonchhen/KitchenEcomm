@@ -75,7 +75,7 @@
             information We collect, use and disclose. We encourage you to review this Policy from time to time so you will know if the Privacy Policy has
             been changed or updated. If you have any questions about the Policy, please contact us at alishajonchhen1@gmail.com.</p>
         <br>
-        <p class="user">Last Updated: Oct 30 2020</p>
+        <p class="user">Last Updated: JAN 01 2021</p>
     </div>
 </div>
 

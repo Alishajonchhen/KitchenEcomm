@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -28,6 +28,11 @@ class HomeController extends Controller
 
     public function home()
     {
-        return view('front.home');
+        $categories = Category::with(["products" => function ($q) {
+            $q->where('available', '>', 0);
+        }])
+            ->where('status', 1)->get();
+
+        return view('front.home', compact('categories'));
     }
 }

@@ -18,7 +18,7 @@
 
             <h3>- Privacy Policy</h3>
             <p class="user">Our Privacy Policy, which also governs your visit to Our Site, can be found at
-                <a href="{{'guide.policy'}}">Privacy Policy</a> . Please review our Privacy Policy for
+                <a href="{{route('guide.policy')}}">Privacy Policy</a> . Please review our Privacy Policy for
                 information on how We collect, use and share information about our users.</p><br>
 
             <h3>- Accounts</h3>

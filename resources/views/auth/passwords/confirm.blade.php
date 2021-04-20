@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;">
-            <div class="box">
+            <div class="box1">
                 <h1>Confirm Password</h1>
                     Please confirm your password before continuing.
 

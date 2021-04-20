@@ -9,15 +9,29 @@ html, body{
 }
 
 /*Login*/
+
 .container .box{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 420px;
+    width: 840px;
     height: 500px;
     padding: 20px;
     border: 2px solid black;
-    margin-left: -40px;
+    margin-left: -240px;
     box-sizing: border-box;
     background-color: white;
+    border-radius: 25px;
+}
+
+.box .right{
+    float: right;
+}
+
+.box #image-holder{
+    background-size: cover;
+    background-image: url("../Images/Login/log.jpg");
+    width: 400px;
+    height: 460px;
+    margin-left: -10px;
 }
 
 .row .button{
@@ -36,17 +50,44 @@ html, body{
     background-color: black;
 }
 
-/*Register*/
-.container .card{
+/*Reset Password*/
+.container .box1{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     width: 420px;
-    height: 600px;
+    height: 500px;
     padding: 20px;
     border: 2px solid black;
     margin-left: -40px;
     box-sizing: border-box;
     background-color: white;
+    border-radius: 25px;
 }
+
+/*Register*/
+.container .card{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 840px;
+    height: 600px;
+    padding: 20px;
+    border: 2px solid black;
+    margin-left: -240px;
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 25px;
+}
+
+.card .right{
+    float: right;
+}
+
+.card #image{
+    background-size: cover;
+    background-image: url("../Images/Login/reg.jpg");
+    margin-left: -10px;
+    width: 400px;
+    height: 560px;
+}
+
 
 /*Brand Name*/
 .container-fluid .navbar-brand{
@@ -66,7 +107,7 @@ html, body{
 
 /*Jumbotron*/
 .jumbotron {
-    background-image: url('../Images/kitchen.jpg');
+    background-image: url('../Images/kitchen.jpeg');
     width: 100%;
     height: 600px;
     background-size: cover;
@@ -78,6 +119,7 @@ html, body{
     font-family: "Courier New", Courier, monospace;
     text-align: center;
     margin-top: 210px;
+    color: #ffff9e;
 }
 
 #subtitle{
@@ -86,7 +128,7 @@ html, body{
 }
 
 .btn-lg{
-    margin-left: 525px;
+    margin-left: 515px;
     background-color: #ffc620;
 }
 
@@ -105,10 +147,13 @@ html, body{
 
 #heading{
     color: black;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 #heading-para{
-    color: black;
+    font-size: 25px;
+    color: whitesmoke;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
 
 
@@ -148,7 +193,7 @@ html, body{
 .footer{
     margin-top: 90px;
     display: flex;
-    background-color: #0f0f0f;
+    background-color:  #1e1e15;
     overflow-y: hidden;
 }
 
@@ -191,6 +236,7 @@ html, body{
     text-align: center;
     padding-top: 20px;
     color: #1b6d85;
+    font-family: "Baskerville Old Face";
 }
 
 #box{
@@ -205,10 +251,11 @@ html, body{
 
 .para{
     text-indent: 40px;
-    font-size: 21px;
+    font-size: 24px;
     margin-left: 60px;
     text-align: justify;
     margin-right: 60px;
+    font-family: "Baskerville Old Face";
 }
 
 .col-md-4 .text-center{

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class GuideController extends Controller
 {
@@ -20,5 +21,9 @@ class GuideController extends Controller
 
     public function ShowTerm(){
         return view('guide.terms');
+    }
+
+    public function Contact(){
+        return view('contact.contact');
     }
 }
