@@ -10,6 +10,11 @@
                 <div class="col-md-6" style="padding-left:24px;">
                     <h1>Login</h1>
                     <hr>
+                    @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

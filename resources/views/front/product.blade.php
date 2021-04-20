@@ -16,7 +16,8 @@
                     </a>
                     <ul class="social">
                         <li><a href="#" data-tip="Quick View"><i class="icon-search"></i></a></li>
-                        <li><a href="{{ route('add-to-cart', $product) }}" data-tip="Add to Cart"><i
+                        <li><a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
+                                data-id="{{ $product->id }}" data-tip="Add to Cart"><i
                                     class="icon-shopping-cart"></i></a></li>
                     </ul>
                     {{-- <span class="product-new-label">Sale</span> --}}
