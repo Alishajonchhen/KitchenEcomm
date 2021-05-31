@@ -76,7 +76,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="product_discount" class="col-md-10 col-form-label text-md-right">Product
-                                Discount</label>
+                                Discount (%)</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
                                 <input name="product_discount" type="text" class="form-control"
@@ -91,16 +91,16 @@
 
                             <div class="col-md-12" style="margin-left: -300px;">
                                 <textarea name="product_description" type="text" class="form-control"
-                                    placeholder="Product Description" required style="height: 100px;">
+                                    placeholder="Product Description" required style="height: 100px; resize: none;">
                                     {{$editData->product_description}}</textarea>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -300px;">
+                    <div class="col-sm-6" style="margin-left: 500px; margin-top: -365px;">
                         <div class="form-group row">
                             <label for="product_voltage" class="col-md-10 col-form-label text-md-right">Product
-                                Voltage</label>
+                                Voltage (W)</label>
 
                             <div class="col-md-12" style="margin-left: -300px;">
                                 <input name="product_voltage" type="text" class="form-control"

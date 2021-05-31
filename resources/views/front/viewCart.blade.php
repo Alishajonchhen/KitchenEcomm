@@ -62,8 +62,7 @@
                                     </a>
                                     <p> {{ $item->product->product_description }} </p>
                                 </div>
-                            </div>
-                        </td>
+                            </div>                        </td>
 
                         <td> <strong style="margin-left: 60px;"> {{ $item->price  }} </strong> </td>
                         <td data-th="Quantity">
@@ -71,14 +70,17 @@
                                 value="{{ $item->quantity  }}" min="1" id="item{{  $item->product->id }}"
                                 data-price="{{ $item->product->product_price }}" data-id="{{  $item->product->id }}"
                                 disabled style="margin-left: 30px;">
+
                             <button class="btn btn-success edit" id="edit{{  $item->product->id }}"
                                 data-id="{{  $item->product->id }}" type="submit" style="background-color: black; margin-left: 30px;">Edit</button>
+
                             <button class="btn btn-success save" id="save{{ $item->product->id }}"
                                 data-id="{{ $item->product->id }}"
                                 data-href="{{ route('add-to-cart', $item->product->id) }}"
-                                    style="background-color: rgba(65,195,152,0.78); margin-left: 90px; margin-top: -34px;">Save</button>
+                                    style="display:none; background-color: rgba(65,195,152,0.78); margin-top:20px; margin-left: 90px;">Save</button>
+
                             <button class="btn btn-success cancel" id="cancel{{  $item->product->id }}"
-                                style="display: none;" data-id="{{  $item->product->id }}">Cancel</button>
+                                style="display: none; background-color: rgba(65,195,152,0.78); margin-top:-33px;" data-id="{{  $item->product->id }}">Cancel</button>
                         </td>
                         <td>
 

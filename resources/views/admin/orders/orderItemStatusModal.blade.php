@@ -1,6 +1,6 @@
 <div class="modal fade" id="orderItemStatusModal{{ $key }}" tabindex="-1" role="dialog"
     aria-labelledby="orderItemStatusModal{{ $key }}" aria-hidden="true"
-    style="margin-left:20px;background-color:unset !important;;width:unset !important;">
+    style="margin-left:30px;background-color:unset !important;;width:unset !important;">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -23,7 +23,8 @@
                             </select>
                         </div>
                     </div>
-                    <button class="btn btn-primary" type="submit">Update</button>
+                    <button class="btn btn-primary" type="submit"
+                    style="background-color: rgba(65,195,152,0.8) !important;">Update</button>
                 </form>
             </div>
         </div>

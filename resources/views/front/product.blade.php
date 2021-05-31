@@ -1,59 +1,69 @@
 @extends('layouts.welcome')
 @section('body')
+
+    <style>
+        @media only screen and (max-width:990px){
+            .product-grid{
+                margin-bottom:30px
+            }
+        }
+    </style>
 <div class="container product-list">
     <h4 style="font-family: Baskerville Old Face; font-size: 26px;">
         {{ strtoupper($category->slug)." >> PRODUCTS" }}
     <br>
         <br>
     </h4>
-    <div class="row">
-        @forelse ($products as $product)
-        <div class="col-md-3 col-sm-6" style="margin-bottom: 10px;">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="{{ $product->image_path.$product->product_image }}">
-                    </a>
-                    <ul class="social">
-                        <li><a href="#" data-tip="Quick View"><i class="icon-search"></i></a></li>
-                        <li><a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
-                                data-id="{{ $product->id }}" data-tip="Add to Cart"><i
-                                    class="icon-shopping-cart"></i></a></li>
-                    </ul>
-                    {{-- <span class="product-new-label">Sale</span> --}}
-                    @if ($product->product_discount)
-                    <span class="product-discount-label">{{ $product->product_discount }}%</span>
-                    @endif
-                </div>
+    <div class="container">
+        <div class="row col-md-12">
+            @forelse ($products as $product)
 
-                <div class="product-content">
-                    <h3 class="title"><a
-                            href="{{ route('frontend-product-detail', $product->id) }}" style="font-family: Baskerville Old Face; font-size: 27px;">
-                            {{ $product->product_name }}</a>
-                    </h3>
-                    {{-- <div class="price">$16.00
-                        <span>$20.00</span>
-                    </div> --}}
-                    <div class="price" style="font-size: 21px;">₹{{ $product->product_price }}
+            <div class="col-md-3 col-sm-6" style="margin-bottom: 20px;">
+                <div class="product-grid">
+                    <div class="product-image" >
+                        <a href="#">
+                            <img class="pic-1" src="{{ $product->image_path.$product->product_image }}">
+                        </a>
+                        <ul class="social">
+                            <li><a href="{{ route('frontend-product-detail', $product->id) }}" data-tip="Quick View"><i class="icon-search"></i></a></li>
+                            <li><a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
+                                    data-id="{{ $product->id }}" data-tip="Add to Cart"><i
+                                        class="icon-shopping-cart"></i></a></li>
+                        </ul>
+                        {{-- <span class="product-new-label">Sale</span> --}}
                         @if ($product->product_discount)
-
-                        <span>₹{{ ($product->product_discount/100)*$product->product_price + $product->product_price  }}</span>
+                        <span class="product-discount-label">{{ $product->product_discount }}%</span>
                         @endif
                     </div>
-                    <a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
-                        id="product{{ $product->id }}" data-id="{{ $product->id }}"
-                       style="font-family: Baskerville Old Face; font-size: 14px; ">+
-                        Add To
-                        Cart</a>
+
+                    <div class="product-content">
+                        <h3 class="title"><a
+                                href="{{ route('frontend-product-detail', $product->id) }}" style="font-family: Baskerville Old Face; font-size: 27px;">
+                                {{ $product->product_name }}</a>
+                        </h3>
+                        {{-- <div class="price">$16.00
+                            <span>$20.00</span>
+                        </div> --}}
+                        <div class="price" style="font-size: 21px;">₹{{ $product->product_price }}
+                            @if ($product->product_discount)
+
+                            <span>₹{{ ($product->product_discount/100)*$product->product_price + $product->product_price  }}</span>
+                            @endif
+                        </div>
+                        <a class="add-to-cart" href="#" data-href="{{ route('add-to-cart', $product) }}"
+                            id="product{{ $product->id }}" data-id="{{ $product->id }}"
+                           style="font-family: Baskerville Old Face; font-size: 14px; ">+
+                            Add To
+                            Cart</a>
+                    </div>
                 </div>
             </div>
+            @empty
+            <div class="col-md-3 col-sm-6" style="margin-bottom: 10px; font-size: 20px;">
+                <p>No Products</p>
+            </div>
+            @endforelse
         </div>
-        @empty
-        <div class="col-md-3 col-sm-6" style="margin-bottom: 10px; font-size: 20px;">
-            <p>No Products</p>
-        </div>
-        @endforelse
-
     </div>
 </div>
 @endsection
@@ -93,18 +103,6 @@
     /* .product-grid:hover .pic-1 {
         opacity: 1
     } */
-
-    .product-grid .pic-2 {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        transition: all .3s ease-out 0s
-    }
-
-    .product-grid:hover .pic-2 {
-        opacity: 1
-    }
 
     .product-grid .social {
         width: 150px;
@@ -295,7 +293,7 @@
                 alert('Product added to cart successfully.');
                 //updatin the cart count;
             }).fail(function(){
-                alert('Error occurred duing adding item to cart.');
+                alert('Error occurred during adding item to cart.');
             })
         });
     })

@@ -13,9 +13,9 @@ class SearchController extends Controller
 
     /**
      * Search the product with the matching category or products
-     * 
+     *
      * @param String $searched
-     * 
+     *
      * @return JSONResponse
      */
     public function search(Request $request)

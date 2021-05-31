@@ -2,6 +2,43 @@
 @section('body')
 
 <style>
+    @media only screen and (max-width:990px){
+        .jumbotron{
+
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .btn-lg{
+            margin-left: 320px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .bgimg{
+            margin-left: 10px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        #horizontal{
+            margin-left: 280px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .jumbotron2{
+            height: 450px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .about{
+            font-size: 10px;
+            margin-top: -60px;
+        }
+    }
+
     img:hover {
         box-shadow: 0 0 2px 1px rgba(210, 136, 0, 0.5);
     }
@@ -75,6 +112,7 @@
             background-position: 0 0;
         }
     }
+
 </style>
 
 <div class="jumbotron">

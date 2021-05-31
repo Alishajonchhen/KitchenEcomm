@@ -55,10 +55,8 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
-     *
      * @param  array  $data
      * @return \App\User
      */
@@ -70,7 +68,6 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-
     public function registered()
     {
         return redirect()->intended('login')->send();

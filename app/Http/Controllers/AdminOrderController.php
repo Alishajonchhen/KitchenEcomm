@@ -10,15 +10,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class OrderController extends Controller
+class AdminOrderController extends Controller
 {
-
     /**
      * All the orders
      */
     public function index()
     {
-
         $orders = Order::with('items', 'orderDeliveryAddress', 'payment')
             ->orderBy('id', 'desc')
             ->get();
@@ -27,14 +25,13 @@ class OrderController extends Controller
 
     /**
      * Update the status of the order
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return Renderable
      */
     public function updateStatus(Request $request, $id)
     {
-
         $order = Order::with('items')->where('id', $id)->first();
         DB::beginTransaction();
         try {
@@ -44,7 +41,7 @@ class OrderController extends Controller
                     ->where('status', '!=', 2)
                     ->update(['status' => 1]);
 
-                //this updates the available qunatity of the product
+                //this updates the available quantity of the product
                 foreach ($order->items as $key => $item) {
 
                     $product = Product::where('id', $item->product_id)->first();
@@ -72,7 +69,7 @@ class OrderController extends Controller
 
     /**
      * View the order details
-     * 
+     *
      * @param int $id
      * @return Renderable
      */
@@ -86,9 +83,9 @@ class OrderController extends Controller
 
     /**
      * Cancel the Order
-     * 
+     *
      * @param int $id
-     * 
+     *
      * @return Renderable
      */
     public function delete($id)
@@ -103,7 +100,7 @@ class OrderController extends Controller
 
     /**
      * Update the orderItem status
-     * 
+     *
      * @param Request $request
      * @param int $id
      * @return Renderable

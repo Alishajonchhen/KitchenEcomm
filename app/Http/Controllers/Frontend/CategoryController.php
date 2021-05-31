@@ -11,7 +11,7 @@ class CategoryController extends Controller
 {
     /**
      * List all the products associated with a specific category
-     * 
+     *
      * @param String $slug
      */
     public function index($slug)
@@ -20,14 +20,12 @@ class CategoryController extends Controller
         $products = Product::with('category')
             ->where('available', '>', 0)
             ->where('category_id', $category->id)->get();
-        // return $category;
-        // return $products;
         return view("front.product", compact('category', 'products'));
     }
 
     /**
      * Show specific product Detail
-     * 
+     *
      * @param Int $id
      * @return Renderable
      */

@@ -11,13 +11,6 @@
             <button class="btn" onclick="openNav()" style="position:absolute"> ☰ </button>
             <h1 class="page-header">Dashboard</h1>
         </div>
-        <!--
-        <div class="col-md-6">
-            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
-                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
-            </ol>
-        </div>
-        -->
     </div>
 </div>
 @endsection

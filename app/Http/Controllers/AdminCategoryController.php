@@ -8,7 +8,7 @@ use App\Product;
 use App\Traits\UploadImage;
 use Illuminate\Support\Str;
 
-class CategoryController extends Controller
+class AdminCategoryController extends Controller
 {
     use UploadImage;
     public function listCategory()

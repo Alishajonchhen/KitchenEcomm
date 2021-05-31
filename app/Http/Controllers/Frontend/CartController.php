@@ -49,7 +49,6 @@ class CartController extends Controller
                 'total' => $product->product_price * 1,
                 'discount' => $product->product_discount,
                 'price' => $product->product_price,
-
             ]);
         } else {
             if ($cartExist && $request->qty && isset($request->singlePage)) {

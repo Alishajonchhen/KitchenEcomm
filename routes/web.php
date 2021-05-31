@@ -5,7 +5,7 @@ use App\Category;
 use App\Http\Controllers\Frontend\OrderController;
 use App\Http\Controllers\Frontend\SearchController;
 use App\Http\Controllers\Frontend\UserController;
-use App\Http\Controllers\OrderController as AppOrderController;
+use App\Http\Controllers\AdminOrderController as AppAdminOrderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,10 +25,18 @@ View::composer('*', function ($view) {
     $cartCount = Cart::where('is_checked_out', 0)->where('user_id', Auth::id())->count();
     return $view->with(['categories' => $categories, 'cartCount' => $cartCount]);
 });
+
 Route::get('/', function () {
     return redirect()->route('login');
 });
+
 Route::group(['prefix' => 'user', 'middleware' => 'prevent-back-history'], function () {
+
+    //Password reset routes
+    Route::get('/password/forgot', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post('/password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
 
     /*Route for Home page*/
     Route::get('/home', [
@@ -83,9 +91,9 @@ Route::group(['middleware' => 'prevent-back-history'], function () {
     Route::delete('/remove-item/{id}', 'Frontend\CartController@removeItemFromCart')->name('remove-item');
 
     Route::get('/product/{id}', 'Frontend\CategoryController@productDetail')->name('frontend-product-detail');
-    Route::post("/place-order", [OrderController::class, 'store'])->name('store-order');
+    Route::post('/place-order', [OrderController::class, 'store'])->name('store-order');
 
-    //####################################3 ORder tracking #########################################
+    //#################################### Order tracking #########################################
     Route::get('user/order-track', [OrderController::class, 'orderTrack'])->name('order-track');
     Route::patch('/user/cancel/order/{id}', [OrderController::class, 'cancelOrderItem'])->name('cancel-order-item');
 
@@ -114,7 +122,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
 
 Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], function () {
     //Password reset routes
-    Route::get('/password/reset', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+    Route::get('/password/forgot', 'Auth\AdminForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
     Route::post('/password/email', 'Auth\AdminForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
     Route::get('/password/reset/{token}', 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
     Route::post('/password/reset', 'Auth\AdminResetPasswordController@reset')->name('admin.password.update');
@@ -126,7 +134,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
     //Category
 
     Route::get('/categories', [
-        'uses' => 'CategoryController@listCategory',
+        'uses' => 'AdminCategoryController@listCategory',
         'as' => 'admin.categories.category'
     ]);
 
@@ -137,10 +145,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
     ]);
 
     //Crud for category table
-    Route::post('/addCategory', 'CategoryController@addCategory')->name('admin.addCategory');
-    Route::delete('/category/delete/{id?}', 'CategoryController@delete')->name('delete-category');
-    Route::get('/category/edit/{id}', 'CategoryController@edit')->name('edit-category');
-    Route::patch('/category/update/{id}', 'CategoryController@update')->name('update-category');
+    Route::post('/addCategory', 'AdminCategoryController@addCategory')->name('admin.addCategory');
+    Route::delete('/category/delete/{id?}', 'AdminCategoryController@delete')->name('delete-category');
+    Route::get('/category/edit/{id}', 'AdminCategoryController@edit')->name('edit-category');
+    Route::patch('/category/update/{id}', 'AdminCategoryController@update')->name('update-category');
 
     //Crud for product table
     Route::post('/addProduct', [App\Http\Controllers\ProductController::class, 'addProduct'])->name('admin.addProducts');
@@ -149,12 +157,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'prevent-back-history'], func
     Route::patch('/product/update/{id}', 'ProductController@update')->name('update-product');
 
     // order Controller
-    Route::get('/orders', [AppOrderController::class, 'index'])->name('admin-order-list');
-    Route::get('/order/edit/{id}', [AppOrderController::class, 'edit'])->name('admin-edit-order');
-    Route::get('/order/view/{id}', [AppOrderController::class, 'viewOrder'])->name('admin-order-view');
-    Route::patch('/order/update/status/{id}', [AppOrderController::class, 'updateStatus'])->name('update-order-status');
-    Route::patch('/order/update/item/status/{id}', [AppOrderController::class, 'updateItemStatus'])->name('update-order-item-status');
-    Route::delete('/order/delete/{id}', [AppOrderController::class, 'delete'])->name('admin-delete-order');
-    Route::delete('/order/item/delete/{id}', [AppOrderController::class, 'deleteOrderItem'])->name('admin-delete-order-item');
+    Route::get('/orders', [AppAdminOrderController::class, 'index'])->name('admin-order-list');
+    Route::get('/order/edit/{id}', [AppAdminOrderController::class, 'edit'])->name('admin-edit-order');
+    Route::get('/order/view/{id}', [AppAdminOrderController::class, 'viewOrder'])->name('admin-order-view');
+    Route::patch('/order/update/status/{id}', [AppAdminOrderController::class, 'updateStatus'])->name('update-order-status');
+    Route::patch('/order/update/item/status/{id}', [AppAdminOrderController::class, 'updateItemStatus'])->name('update-order-item-status');
+    Route::delete('/order/delete/{id}', [AppAdminOrderController::class, 'delete'])->name('admin-delete-order');
+    Route::delete('/order/item/delete/{id}', [AppAdminOrderController::class, 'deleteOrderItem'])->name('admin-delete-order-item');
 });
 // });

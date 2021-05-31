@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;">
             <div class="box1">
-                <h1>Admin Reset Password</h1>
+                <h1>Admin Forgot Password</h1>
                 <hr>
                 <br>
 

@@ -1,15 +1,13 @@
 @extends('admin.adminWelcome')
 @section('page-header')
-<div class="col-md-5">
-    <h1 class="page-header">View Order</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <ol class="breadcrumb" style="width: 240px; margin-top: -60px; margin-left: 900px;">
-                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Overview</a></li>
-            </ol>
+    <div class="col-md-5">
+        <div class="row col-md-12">
+            <div class="col-md-6">
+                <button class="btn" onclick="openNav()" style="position:absolute"> ☰ </button>
+                <h1 class="page-header">View Order</h1>
+            </div>
         </div>
     </div>
-</div>
 @endsection
 @section('content')
 <style>
@@ -18,7 +16,7 @@
         height: 500px;
         padding: 5px;
         border: 2px solid black;
-        margin-left: 360px;
+        margin-left: 330px;
         box-sizing: border-box;
         background-color: white;
     }
@@ -93,7 +91,7 @@
                     </td>
 
                 </tr>
-                {{-- @include('admin.orders.orderItemStatusModal') --}}
+                 @include('admin.orders.orderItemStatusModal')
                 @endforeach
 
             </tbody>

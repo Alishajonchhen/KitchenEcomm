@@ -21,6 +21,26 @@
 </head>
 
 <body>
+<style>
+    @media only screen and (max-width:990px){
+        #search_product{
+            margin-right: -280px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .footer{
+            height: 340px;
+        }
+    }
+
+    @media only screen and (max-width:990px){
+        .inner-left{
+            margin-top: -16px;
+        }
+    }
+
+</style>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="row">
@@ -126,7 +146,7 @@
                             </ul>
                         </div>
                         <div class="inner-right">
-                            <p>Copyright © 2020 BetterBuy.com</p>
+                            <p>Copyright © 2021 BetterBuy.com</p>
                         </div>
                     </div>
                 </div>
@@ -138,7 +158,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    @include('sweetalert::alert')
+
 </body>
 @yield('scripts')
 

@@ -98,23 +98,13 @@
                         </td>
                         <td>
                             <a class="btn btn-success" href="{{ route('admin-order-view', $order->id) }}">View</a>
-                            {{-- <form action="{{ route('admin-delete-order', $order->id) }}" method="post">
-                            @csrf
-                            @method("DELETE")
-                            <button class="btn btn-danger btn-xs" type="submit"
-                                onclick="return confirm('Are you Sure?')">Cancel</button>
-                            </form> --}}
-                        </td>
+                                                    </td>
                     </tr>
                     @include('admin.orders.orderStatusModal')
-
                     @endforeach
-
-
                 </tbody>
             </table>
         </div>
-
     </div>
 </div>
 @endsection

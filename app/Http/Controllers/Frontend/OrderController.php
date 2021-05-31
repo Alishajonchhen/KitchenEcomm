@@ -20,7 +20,7 @@ class OrderController extends Controller
     /**
      * Place the order once user checksout
      * @param Request $request
-     * 
+     *
      * @return Renderable
      */
     public function store(OrderRequest $request)
@@ -68,21 +68,22 @@ class OrderController extends Controller
                 'payment_method' => 'cash'
             ]);
 
-            //making the cart items as checked out 
+           //making the cart items as checked out
             Cart::where('user_id', Auth::id())->update(['is_checked_out' => 1]);
 
             DB::commit();
-            return redirect()->route('all-carts')->with('success', 'Thank you for shopping with us. You order has been Placed.');
+            Session::flash('success', 'Thank you for shopping with us. Do shop again!!');
+            return redirect()->route('checkout-order');
         } catch (Exception $e) {
             return $e;
-            DB::rollBack();
+           DB::rollBack();
             return redirect()->back()->with('error', 'Problem creating order');
         }
     }
 
     /**
      * Tracking the user order
-     * 
+     *
      * @return renderable
      */
     public function orderTrack()
@@ -100,7 +101,7 @@ class OrderController extends Controller
 
     /**
      * User canceling the ordered item | specific item
-     * 
+     *
      */
     public function cancelOrderItem(Request $request, $id)
     {

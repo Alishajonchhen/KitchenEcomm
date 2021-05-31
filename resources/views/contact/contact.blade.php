@@ -35,21 +35,21 @@
                             <div class="wrap-input1 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
                                 <label for="email">EMAIL</label>
                                 <br>
-                                <input class="input1" type="text" name="email" placeholder="Email">
+                                <input class="input1" type="text" name="email" placeholder="Email" required>
                                 <span class="shadow-input1"></span>
                             </div>
 
-                            <div class="wrap-input1 validate-input" data-validate = "Subject is required">
-                                <label for="sub">SUBJECT</label>
+                            <div class="wrap-input1 validate-input" data-validate = "Contact is required">
+                                <label for="sub">CONTACT</label>
                                 <br>
-                                <input class="input1" type="text" name="subject" placeholder="Subject">
+                                <input class="input1" type="text" name="contact" placeholder="Contact" required>
                                 <span class="shadow-input1"></span>
                             </div>
 
                             <div class="wrap-input1 validate-input" data-validate = "Message is required">
                                 <label for="Msg">MESSAGE</label>
                                 <br>
-                                <textarea class="input2" name="message" placeholder="Message"></textarea>
+                                <textarea class="input2" name="message" placeholder="Message" style="resize: none"></textarea>
                                 <span class="shadow-input1"></span>
                             </div>
                             <br>
@@ -58,7 +58,7 @@
                                         style="background-color: rgba(65,195,152,0.8); height: 30px;
                                            font-size: 16px;">
                             <span>
-                                Send Email
+                                Send
                                 <i class="icon-long-arrow-right" aria-hidden="true"></i>
                             </span>
                                 </button>

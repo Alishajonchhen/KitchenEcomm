@@ -210,7 +210,7 @@
     <br>
 
     <div id="mySidebar" class="col-sm-3 col-md-2 sidebar"
-        style="background-color:   #a3c2c2; height: 950px; color: black; width: 300px;">
+        style="background-color:   #a3c2c2; height:900px; color: black; width: 300px;">
         <ul class="nav nav-sidebar">
             <br>
             <br>

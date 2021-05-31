@@ -7,7 +7,7 @@
         <br>
     </h3>
 
-    <div class="well" style="background-color: rgba(241,247,175,0.78); height: 203px;">
+    <div class="well" style="background-color: rgba(241,247,175,0.78); height: 403px;">
         <table class="table" >
             <thead>
                 <tr>
@@ -62,7 +62,7 @@
                             @method("PATCH")
                             <button class="btn btn-danger btn-xs" type="submit"
                                 onclick="return confirm('Are you Sure, You want to cancel this order?')"
-                                title="Cancel Order">Cancel</button>
+                                title="Cancel Order" style="background-color: black;width: 60px; height: 30px;">Cancel</button>
                         </form>
                         @else
                         -

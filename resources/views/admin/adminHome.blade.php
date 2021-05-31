@@ -71,7 +71,7 @@
                             </ul>
                         </div>
                         <div class="inner-right">
-                            <p>Copyright © 2020 BetterBuy.com</p>
+                            <p>Copyright © 2021 BetterBuy.com</p>
                         </div>
                     </div>
                 </div>
