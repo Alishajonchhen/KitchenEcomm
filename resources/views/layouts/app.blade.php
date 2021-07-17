@@ -59,6 +59,10 @@
                         <div class="logo" style="width: 150px; height: 30px; margin-left: 50px;">
                             <img src="{{asset('/lib/Images/baltra.png')}}" alt="Baltra" class="img-responsive">
                         </div>
+                        <div>
+                            <img src="{{asset('/lib/Images/logo.png')}}" alt="BetterBuy" class="img-responsive"
+                                 style="width: 250px; height: 60px;margin-left: 230px;margin-top: -25px;">
+                        </div>
                         <div class="inner-left">
                             <p>Purna Trading. Jawalakhel, Lalitpur</p>
                         </div>

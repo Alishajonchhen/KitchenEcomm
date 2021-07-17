@@ -73,7 +73,7 @@ class ProductController extends Controller
             }
             $product->delete();
         } else {
-            return redirect()->back()->with('error', 'Some quantity of product is already sold. so it cannot be canceled.Please deactive the item.');
+            return redirect()->back()->with('error', 'Some quantity of product is already sold. So it cannot be canceled. Please deactive the unavailable product.');
         }
         return redirect()->route('admin.products.product')->with('success', 'Product is deleted successfully.');
     }
@@ -88,10 +88,10 @@ class ProductController extends Controller
 
     /**
      * Update the product
-     * 
+     *
      * @param Request $request
      * @param int $id
-     * 
+     *
      * @return response
      */
     public function update(Request $request, $id)
@@ -123,7 +123,7 @@ class ProductController extends Controller
             $new['category_id'] = $request->category_id;
             $new['status'] = $request->status;
             if ($request->hasFile('product_image')) {
-                //first remove the image 
+                //first remove the image
                 if ($new->product_image) {
                     $image_path = public_path() . '/lib/Images/products/' . $new->product_image;
                     if (file_exists($image_path)) {

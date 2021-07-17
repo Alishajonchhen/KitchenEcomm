@@ -9,6 +9,11 @@
                     <div class="right">
                         <h1>Admin Login</h1>
                         <hr>
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('admin.login.submit') }}">
                             @csrf
 

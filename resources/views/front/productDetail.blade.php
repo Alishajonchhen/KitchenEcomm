@@ -2,7 +2,15 @@
 @section('body')
     <style>
         @media only screen and (max-width:990px){
-            .product-list {margin-bottom:30px
+            #boxes {
+                margin-bottom:10px;
+            }
+        }
+
+        @media only screen and (max-width:845px){
+            #boxes {
+                margin-top:120px;
+                margin-left: 20px;
             }
         }
     </style>
@@ -51,8 +59,9 @@
             </div>
             <div class="row">
                 {{-- <button type="button" class="btn btn-primary">Buy Now</button> --}}
-                <button type="button" class="btn btn-success add-to-cart"
-                    data-href="{{ route('add-to-cart', $product->id) }}" style="background-color: black">Add to
+                <button type="button" class="btn btn-success add-to-cart btn-lg"
+                    data-href="{{ route('add-to-cart', $product->id) }}" style="background-color: black;
+                    margin-left: 0;">Add to
                     Cart</button>
             </div>
         </div>

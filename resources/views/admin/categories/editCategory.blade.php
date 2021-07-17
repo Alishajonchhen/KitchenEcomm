@@ -67,7 +67,7 @@
 
                     <div class="form-group row" style="text-align: center">
                         <img src="{{ asset($editData->image_path.$editData->category_image) }}" alt="category_image"
-                            style="height: 50px; width:50px;">
+                            style="height: 150px; width:200px;margin-left: 150px;">
                     </div>
                     @endif
 

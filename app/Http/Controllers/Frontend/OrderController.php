@@ -68,7 +68,7 @@ class OrderController extends Controller
                 'payment_method' => 'cash'
             ]);
 
-           //making the cart items as checked out
+            //making the cart items as checked out
             Cart::where('user_id', Auth::id())->update(['is_checked_out' => 1]);
 
             DB::commit();
@@ -76,7 +76,7 @@ class OrderController extends Controller
             return redirect()->route('checkout-order');
         } catch (Exception $e) {
             return $e;
-           DB::rollBack();
+            DB::rollBack();
             return redirect()->back()->with('error', 'Problem creating order');
         }
     }

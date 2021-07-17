@@ -6,7 +6,7 @@
             <div class="col-xs-6 col-md-offset-4" style="padding-top: 50px;">
                 <div class=" row card">
                     <div class="col-md-6">
-                        <img src="{{asset('lib/Images/Login/adreg.jpg')}}" alt="Kitchen" style="height: 560px; width: 400px;">
+                        <img src="{{asset('lib/Images/Login/adreg.jpg')}}" alt="Kitchen" style="height: 560px; width: 420px;">
                     </div>
                     <div class="col-md-6" style="padding-left: 22px;">
                         <h1>Admin Register</h1>
